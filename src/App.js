@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import rockGlass from './images/rockGlass.svg';
@@ -37,6 +38,7 @@ function App() {
         </div>
       </Switch>
     </Router>
+
   );
 }
 

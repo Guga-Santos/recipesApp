@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [passwordValue, setPasswordValue] = useState('');
@@ -42,19 +43,21 @@ function Login() {
         onChange={ changeEmailValue }
       />
       <input
-        type="text"
+        type="password"
         data-testid="password-input"
         onChange={ ({ target }) => { changePaswordValue(target); } }
         value={ passwordValue }
       />
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ enableButton }
-        onClick={ submitUser }
-      >
-        Login
-      </button>
+      <Link to="/foods">
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ enableButton }
+          onClick={ submitUser }
+        >
+          Login
+        </button>
+      </Link>
     </section>
   );
 }

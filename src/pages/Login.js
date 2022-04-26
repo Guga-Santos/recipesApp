@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../components/footer';
 
 export default function Login() {
   return (
@@ -26,6 +27,7 @@ export default function Login() {
         Enter
 
       </button>
-    </div> // teste
+      <Footer />
+    </div>
   );
 }

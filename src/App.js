@@ -11,6 +11,7 @@ import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreNationalities from './pages/ExploreNationalities';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
+import Login from './pages/Login';
 import Profile from './pages/Profile';
 
 function App() {
@@ -18,7 +19,11 @@ function App() {
     <div>
       {/* <Header /> */}
       <Switch>
-        <Route exact path="/" />
+        <Route
+          exact
+          path="/"
+          component={ Login }
+        />
         <Route
           path="/foods"
           component={ Foods }

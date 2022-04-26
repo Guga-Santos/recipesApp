@@ -8,8 +8,7 @@ export default function AppProvider({ children }) {
   const [recipes, setRecipes] = useState({});
   const [drinks, setDrinks] = useState({});
 
-
-// ComponentDidMount link -----------------------
+  // ComponentDidMount link -----------------------
   useEffect(() => {
     const recipesAPI = async () => {
       const categorias = await fetchRecipe('categorias');

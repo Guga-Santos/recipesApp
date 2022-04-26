@@ -1,7 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-import rockGlass from './images/rockGlass.svg';
+// import rockGlass from './images/rockGlass.svg';
 import Login from './pages/Login';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +25,7 @@ function App() {
         <Route path="/profile" />
         <Route path="/done-recipes" />
         <Route path="/favorite-recipes" />
-        <div className="meals">
+        {/*         <div className="meals">
           <span className="logo">TRYBE</span>
           <object
             className="rocksGlass"
@@ -35,7 +34,7 @@ function App() {
           >
             Glass
           </object>
-        </div>
+        </div> */}
       </Switch>
     </Router>
 

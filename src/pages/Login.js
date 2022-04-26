@@ -6,10 +6,11 @@ function Login() {
   const [enableButton, setEnableButton] = useState(true);
 
   const activeButton = () => {
-    const mingLength = 6;
+    const mingLength = 5;
     const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]/i;
     const checkEmail = emailRegex.test(emailValue);
     const passwordLength = passwordValue.length > mingLength;
+    console.log(checkEmail, passwordLength);
     if (checkEmail && passwordLength) {
       setEnableButton(false);
     } else { setEnableButton(true); }
@@ -23,6 +24,13 @@ function Login() {
   const changeEmailValue = ({ target }) => {
     setEmailValue(target.value);
     activeButton();
+  };
+
+  const submitUser = () => {
+    console.log('oi');
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('cocktailsToken', 1);
+    localStorage.setItem('user', [{ email: emailValue }]);
   };
 
   return (
@@ -43,6 +51,7 @@ function Login() {
         type="button"
         data-testid="login-submit-btn"
         disabled={ enableButton }
+        onClick={ submitUser }
       >
         Login
       </button>

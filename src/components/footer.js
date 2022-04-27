@@ -8,14 +8,29 @@ import './footer.css';
 function Footer() {
   return (
     <div className="footer_main" data-testid="footer">
-      <a data-testid="drinks-bottom-btn" href="/drinks">
-        <img src={ DrinkIcon } alt="Drink Icon" className="footer_icons" />
+      <a href="/drinks">
+        <img
+          src={ DrinkIcon }
+          alt="Drink Icon"
+          data-testid="drinks-bottom-btn"
+          className="footer_icons"
+        />
       </a>
-      <a data-testid="explore-bottom-btn" href="/explore">
-        <img src={ ExploreIcon } alt="Explore Icon" className="footer_icons" />
+      <a href="/explore">
+        <img
+          src={ ExploreIcon }
+          alt="Explore Icon"
+          data-testid="explore-bottom-btn"
+          className="footer_icons"
+        />
       </a>
-      <a data-testid="food-bottom-btn" href="/food">
-        <img src={ MealIcon } alt="meal Icon" className="footer_icons" />
+      <a href="/foods">
+        <img
+          src={ MealIcon }
+          alt="meal Icon"
+          data-testid="food-bottom-btn"
+          className="footer_icons"
+        />
       </a>
     </div>
   );

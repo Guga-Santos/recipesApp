@@ -1,9 +1,13 @@
 .footer_main {
   background-color: #c4c4c4;
+  bottom: 0;
   display: flex;
   flex-direction: row;
+  height: auto;
   justify-content: space-between;
-  position: fixed; bottom: 0px;
+  max-width: 100%;
+  position: fixed;
+  width: 100vw;
 }
 
 .footer_icons {

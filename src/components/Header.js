@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 export default function Header() {
   const location = useLocation();
   const pathInfo = location.pathname;
   const history = useHistory();
+
+  const [search, setSearch] = useState(false);
 
   let title = '';
   let validate = true;
@@ -62,25 +65,28 @@ export default function Header() {
   };
 
   return (
-    <div className="header-container">
-      <button
-        type="button"
-        data-testid="profile-top-btn"
-        src={ profileIcon }
-        onClick={ clickToProfile }
-      >
-        <img src={ profileIcon } alt="" />
-      </button>
-      <h1 data-testid="page-title">{ title }</h1>
-      {validate && (
+    <div className="header-and-filters">
+      <div className="header-container">
         <button
           type="button"
-          data-testid="search-top-btn"
-          src={ searchIcon }
+          data-testid="profile-top-btn"
+          src={ profileIcon }
+          onClick={ clickToProfile }
         >
-          <img src={ searchIcon } alt="" />
-        </button>)}
-
+          <img src={ profileIcon } alt="" />
+        </button>
+        <h1 data-testid="page-title">{ title }</h1>
+        {validate && (
+          <button
+            type="button"
+            data-testid="search-top-btn"
+            src={ searchIcon }
+            onClick={ () => setSearch(!search) }
+          >
+            <img src={ searchIcon } alt="" />
+          </button>)}
+      </div>
+      {search && <SearchBar /> }
     </div>
   );
 }

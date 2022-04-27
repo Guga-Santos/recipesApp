@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Card from '../components/Card';
 import Header from '../components/Header';
+import Footer from '../components/footer';
 import AppContext from '../context/AppContext';
 
 export default function Drinks() {
@@ -9,6 +10,7 @@ export default function Drinks() {
   return (
     <div>
       <Header />
+      <Footer />
       { validateCARD && <Card /> }
     </div>
   );

@@ -55,7 +55,7 @@
   border: solid rgb(106, 81, 89);
   border-radius: 5px;
   position: absolute;
-  top: 48%;
+  top: 45%;
   width: 52vw;
 }
 
@@ -66,6 +66,6 @@
   cursor: pointer;
   left: 24%;
   position: absolute;
-  top: 57%;
+  top: 54%;
   width: 52vw;
 }

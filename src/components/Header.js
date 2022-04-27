@@ -1,11 +1,12 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 export default function Header() {
   const location = useLocation();
   const pathInfo = location.pathname;
+  const history = useHistory();
 
   let title = '';
   let validate = true;
@@ -56,12 +57,17 @@ export default function Header() {
     return null;
   }
 
+  const clickToProfile = () => {
+    history.push('/profile');
+  };
+
   return (
     <div className="header-container">
       <button
         type="button"
         data-testid="profile-top-btn"
         src={ profileIcon }
+        onClick={ clickToProfile }
       >
         <img src={ profileIcon } alt="" />
       </button>

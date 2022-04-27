@@ -7,8 +7,9 @@ import AppContext from './AppContext';
 export default function AppProvider({ children }) {
   const [recipes, setRecipes] = useState({});
   const [drinks, setDrinks] = useState({});
+  const [userEmail, setUserEmail] = useState('');
 
-  // ComponentDidMount link -----------------------
+  // ComponentDidMount like -----------------------
   useEffect(() => {
     const recipesAPI = async () => {
       const categorias = await fetchRecipe('categorias');
@@ -34,14 +35,19 @@ export default function AppProvider({ children }) {
       });
     };
 
+    const userMail = JSON.parse(localStorage.getItem('user'));
+
     recipesAPI();
     drinksAPI();
+    setUserEmail(userMail.email);
   }, []);
   //  --------------------------------------------
 
   const contexto = {
     recipes,
     drinks,
+    userEmail,
+    setUserEmail,
   };
 
   return (

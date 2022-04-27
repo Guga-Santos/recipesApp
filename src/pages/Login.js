@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-// commit test
+import logoFood from '../images/logoFood.png';
+import '../css/Login.css';
 
 function Login() {
   const [passwordValue, setPasswordValue] = useState('');
@@ -29,36 +29,43 @@ function Login() {
   };
 
   const submitUser = () => {
-    console.log('oi');
     localStorage.setItem('mealsToken', 1);
     localStorage.setItem('cocktailsToken', 1);
     localStorage.setItem('user', JSON.stringify({ email: emailValue }));
   };
 
   return (
-    <section>
-      <input
-        type="text"
-        data-testid="email-input"
-        value={ emailValue }
-        onChange={ changeEmailValue }
-      />
-      <input
-        type="password"
-        data-testid="password-input"
-        onChange={ ({ target }) => { changePaswordValue(target); } }
-        value={ passwordValue }
-      />
-      <Link to="/foods">
-        <button
-          type="button"
-          data-testid="login-submit-btn"
-          disabled={ enableButton }
-          onClick={ submitUser }
-        >
-          Login
-        </button>
-      </Link>
+    <section className="componentsLogin">
+      <div className="logo">
+        <img src={ logoFood } className="imageLogo" alt="logo" />
+        <input
+          type="text"
+          data-testid="email-input"
+          className="emailLogin"
+          placeholder="your@email.com"
+          value={ emailValue }
+          onChange={ changeEmailValue }
+        />
+        <input
+          type="password"
+          data-testid="password-input"
+          className="passwordLogin"
+          placeholder="password"
+          onChange={ ({ target }) => { changePaswordValue(target); } }
+          value={ passwordValue }
+        />
+        <Link to="/foods">
+          <button
+            type="button"
+            data-testid="login-submit-btn"
+            className="loginButton"
+            disabled={ enableButton }
+            onClick={ submitUser }
+          >
+            Login
+          </button>
+        </Link>
+      </div>
     </section>
   );
 }

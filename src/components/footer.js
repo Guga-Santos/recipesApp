@@ -7,7 +7,7 @@ import './footer.css';
 
 function Footer() {
   return (
-    <div className="footer_main" data-testid="footer">
+    <div className="footer_container" data-testid="footer">
       <a href="/drinks">
         <img
           src={ DrinkIcon }

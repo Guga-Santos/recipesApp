@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import './Header.css';
 
 export default function Header() {
   const location = useLocation();

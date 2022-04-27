@@ -1,6 +1,5 @@
-.footer_container {
-  background-color: #c4c4c4;
-  bottom: 0;
+.header-container {
+  top: 0;
   display: flex;
   flex-direction: row;
   height: auto;

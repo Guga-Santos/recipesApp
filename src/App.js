@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import DoneRecipes from './pages/DoneRecipes';
 import Drinks from './pages/Drinks';
@@ -17,7 +17,6 @@ import Profile from './pages/Profile';
 function App() {
   return (
     <div>
-      {/* <Header /> */}
       <Switch>
         <Route
           exact

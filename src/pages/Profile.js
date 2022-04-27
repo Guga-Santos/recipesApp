@@ -1,13 +1,10 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
-import AppContext from '../context/AppContext';
 
 export default function Profile() {
-  const contexto = useContext(AppContext);
-  const { userEmail } = contexto;
-
   const history = useHistory();
+  const getStorage = JSON.parse(localStorage.getItem('user'));
 
   const handleLogout = () => {
     localStorage.clear();
@@ -19,7 +16,7 @@ export default function Profile() {
       <Header />
       <h2 data-testid="profile-email">
         {' '}
-        { userEmail }
+        { getStorage.email }
         {' '}
       </h2>
       <button
@@ -41,7 +38,7 @@ export default function Profile() {
       <button
         type="button"
         data-testid="profile-logout-btn"
-        onClick={ () => handleLogout() }
+        onClick={ handleLogout }
       >
         Logout
 

@@ -1,5 +1,12 @@
 .header-container {
   display: flex;
-  justify-content: space-between;
   width: 360px;
+}
+
+.card-img {
+  width: 100px;
+}
+
+button {
+  height: 40px;
 }

@@ -1,9 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
-import Footer from '../components/footer';
-=======
 import { useHistory } from 'react-router-dom';
->>>>>>> main-group-7
+import Footer from '../components/footer';
 import Header from '../components/Header';
 
 export default function Profile() {
@@ -18,9 +15,7 @@ export default function Profile() {
   return (
     <div>
       <Header />
-<<<<<<< HEAD
       <Footer />
-=======
       <h4 data-testid="profile-email">
         {' '}
         { getStorage?.email }
@@ -50,7 +45,6 @@ export default function Profile() {
         Logout
 
       </button>
->>>>>>> main-group-7
     </div>
   );
 }

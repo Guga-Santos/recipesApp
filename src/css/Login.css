@@ -1,0 +1,71 @@
+.componentsLogin {
+  align-items: center;
+  background-color: brown;
+  background-image: url('../images/foodInternetImage.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100%;
+}
+
+/*
+  41, 19, 10
+  201, 168, 137
+  196, 208, 222
+  174, 108, 35
+  112, 51, 21
+  85, 37, 11
+  235, 183, 104
+  200, 134, 97
+  185, 90, 61
+  150, 99, 89
+  106, 81, 89
+*/
+
+.logo {
+  align-items: center;
+  background-color: rgb(201, 168, 137);
+  border: solid rgb(106, 81, 89);
+  border-radius: 7%;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  justify-content: center;
+  width: 60vw;
+}
+
+.imageLogo {
+  bottom: 33%;
+  position: absolute;
+}
+
+.emailLogin {
+  border: solid rgb(106, 81, 89);
+  border-radius: 5px;
+  margin-top: 50px;
+  position: absolute;
+  top: 32%;
+  width: 52vw;
+}
+
+.passwordLogin {
+  border: solid rgb(106, 81, 89);
+  border-radius: 5px;
+  position: absolute;
+  top: 45%;
+  width: 52vw;
+}
+
+.loginButton {
+  background: rgb(235, 183, 104);
+  border: solid rgb(106, 81, 89);
+  border-radius: 5px;
+  cursor: pointer;
+  left: 24%;
+  position: absolute;
+  top: 54%;
+  width: 52vw;
+}

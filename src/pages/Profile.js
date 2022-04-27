@@ -14,11 +14,11 @@ export default function Profile() {
   return (
     <div>
       <Header />
-      <h2 data-testid="profile-email">
+      <h4 data-testid="profile-email">
         {' '}
-        { getStorage.email }
+        { getStorage?.email }
         {' '}
-      </h2>
+      </h4>
       <button
         type="button"
         data-testid="profile-done-btn"

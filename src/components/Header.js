@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useLocation } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
@@ -60,10 +60,6 @@ export default function Header() {
     return null;
   }
 
-  const clickToProfile = () => {
-    history.push('/profile');
-  };
-
   return (
     <div className="header-and-filters">
       <div className="header-container">
@@ -71,7 +67,7 @@ export default function Header() {
           type="button"
           data-testid="profile-top-btn"
           src={ profileIcon }
-          onClick={ clickToProfile }
+          onClick={ () => history.push('/profile') }
         >
           <img src={ profileIcon } alt="" />
         </button>

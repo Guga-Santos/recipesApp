@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import Card from '../components/Card';
-import Header from '../components/Header';
 import Footer from '../components/footer';
+import Header from '../components/Header';
 import AppContext from '../context/AppContext';
 
 export default function Drinks() {
   const contexto = useContext(AppContext);
-  const { validateCARD } = contexto;
+  const { validateCARD, searchData } = contexto;
   return (
     <div>
       <Header />
+      { validateCARD && <Card data={ searchData.drinks } /> }
       <Footer />
-      { validateCARD && <Card /> }
     </div>
   );
 }

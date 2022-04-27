@@ -1,37 +1,33 @@
-import React, { useContext } from 'react';
-import AppContext from '../context/AppContext';
+import React from 'react';
 
 const MAGICNUMBER = 12;
 
-export default function Card() {
-  const contexto = useContext(AppContext);
-  const { searchData } = contexto;
+export default function Card({ data }) {
+  // const history = useHistory();
 
-  const foodOrDrink = Object.keys(searchData)[0];
+  // if (data?.length === 1 && foodOrDrink) {
+  //   history.push(`/foods/${data[0].idMeal}`);
+  // }
+
+  if (data === null) {
+    global.alert('Sorry, we haven\'t found any recipes for these filters.');
+  }
 
   return (
-    foodOrDrink === 'drinks'
-      ? searchData.drinks.map((obj, index) => index < MAGICNUMBER && (
-        <div data-testid={ `${index}-recipe-card` } key={ index }>
-          <img
-            src={ obj.strDrinkThumb }
-            alt="imagem do drink"
-            className="card-img"
-            data-testid={ `${index}-card-img` }
-          />
-          <h4 data-testid={ `${index}-card-name` }>{obj.strDrink}</h4>
-        </div>
-      ))
-      : searchData.meals.map((obj, index) => index < MAGICNUMBER && (
-        <div data-testid={ `${index}-recipe-card` } key={ index }>
-          <img
-            src={ obj.strMealThumb }
-            alt="imagem do drink"
-            className="card-img"
-            data-testid={ `${index}-card-img` }
-          />
-          <h4 data-testid={ `${index}-card-name` }>{obj.strMeal}</h4>
-        </div>
-      ))
-  );
+    data && data.map((obj, index) => index < MAGICNUMBER && (
+      <div data-testid={ `${index}-recipe-card` } key={ index }>
+        <img
+          src={ data[0].strMeal === undefined ? obj.strDrinkThumb : obj.strMealThumb }
+          alt="imagem"
+          className="card-img"
+          data-testid={ `${index}-card-img` }
+        />
+        <h4
+          data-testid={ `${index}-card-name` }
+        >
+          {data[0].strMeal === undefined ? obj.strDrink : obj.strMeal}
+
+        </h4>
+      </div>
+    )));
 }

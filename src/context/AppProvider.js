@@ -18,6 +18,8 @@ export default function AppProvider({ children }) {
 
   const [validateCARD, setValidateCARD] = useState(false);
 
+  const [selectedCATEG, setSelectedCATEG] = useState('');
+
   // ComponentDidMount like -----------------------
   useEffect(() => {
     const recipesAPI = async () => {
@@ -70,6 +72,8 @@ export default function AppProvider({ children }) {
     searchData,
     query,
     validateCARD,
+    selectedCATEG,
+    setSelectedCATEG,
     getSearchType,
     getQuery,
     fetchSearchOnClick,

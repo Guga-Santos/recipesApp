@@ -25,11 +25,11 @@ function App() {
         />
         <Route
           path="/foods"
-          component={ Foods }
+          render={ (props) => <Foods { ...props } /> }
         />
         <Route
           path="/drinks"
-          component={ Drinks }
+          render={ (props) => <Drinks { ...props } /> }
         />
         <Route
           path="/foods/{id-da-receita}"

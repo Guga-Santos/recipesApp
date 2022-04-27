@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import fetchAllDrinks from '../services/fetchAllDrinks';
+import fetchAllFoods from '../services/fetchAllFoods';
 import fetchDrinks from '../services/fetchDrinks';
 import fetchRecipe from '../services/fetchRecipes';
 import fetchSearchByFilters from '../services/fetchSearchByFilters';
@@ -19,29 +21,36 @@ export default function AppProvider({ children }) {
   const [validateCARD, setValidateCARD] = useState(false);
 
   // ComponentDidMount like -----------------------
+  const [loading, setLoading] = useState(true);
+  // ComponentDidMount link -----------------------
   useEffect(() => {
     const recipesAPI = async () => {
       const categorias = await fetchRecipe('categorias');
       const nacionalidades = await fetchRecipe('nacionalidades');
       const ingredientes = await fetchRecipe('ingredientes');
-
+      const allFoods = await fetchAllFoods();
       setRecipes({
+        allFoods,
         categorias: categorias.meals,
         nacionalidades: nacionalidades.meals,
         ingredientes: ingredientes.meals,
       });
+      setLoading(false);
     };
     const drinksAPI = async () => {
       const categorias = await fetchDrinks('categorias');
       const tipos = await fetchDrinks('tipos');
       const ingredientes = await fetchDrinks('ingredientes');
       const copos = await fetchDrinks('copos');
+      const allDrinks = await fetchAllDrinks();
       setDrinks({
+        allDrinks,
         categorias: categorias.drinks,
         tipos: tipos.drinks,
         ingredientes: ingredientes.drinks,
         copos: copos.drinks,
       });
+      setLoading(false);
     };
 
     recipesAPI();
@@ -73,6 +82,7 @@ export default function AppProvider({ children }) {
     getSearchType,
     getQuery,
     fetchSearchOnClick,
+    loading,
   };
 
   return (

@@ -7,7 +7,7 @@ export default function Card({ data, type }) {
   if (data === null) {
     global.alert('Sorry, we haven\'t found any recipes for these filters.');
   }
-
+  console.log('Entrei no card');
   return (
     data && data.map((obj, index) => index < MAGICNUMBER && (
       data.length < 2

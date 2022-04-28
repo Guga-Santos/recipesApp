@@ -18,7 +18,6 @@ export default function MainScreen({ history }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectFilter]);
 
-  console.log(drinks, foods, loading);
   if (loading) {
     return <div>carregando</div>;
   }

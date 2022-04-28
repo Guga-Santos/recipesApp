@@ -12,13 +12,24 @@ export default function DrinkDetails() {
   const location = useLocation();
   const history = useHistory();
   const id = location.pathname.split('/')[2];
+  const doneRecipes = [];
+  const progressRecipes = [];
+  let isRecipeDone = false;
+  let isRecipeInProgress = false;
+  if (localStorage.doneRecipes !== undefined) {
+    doneRecipes.push(JSON.parse(localStorage.doneRecipes));
+    isRecipeDone = doneRecipes.find((index) => index.id === details.idDrink);
+  }
+  if (localStorage.inProgressRecipes !== undefined) {
+    progressRecipes.push(JSON.parse(localStorage.inProgressRecipes));
+    isRecipeInProgress = progressRecipes.find((index) => index.id === details.idMeal);
+  }
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchForDetails('cocktail', id);
       setDetails(data.drinks[0]);
       const randomData = await fetchRecomended('meal');
       setRecomended(randomData.meals.slice(0, MAGICNUMBER));
-      console.log(data.drinks);
     };
     fetchData();
   }, []);
@@ -38,18 +49,24 @@ export default function DrinkDetails() {
               alt="imagem"
               style={ { width: '45vw' } }
             />
-            <h4>{rec.strMeal}</h4>
+            <h4 data-testid={ `${i}-recomendation-title` }>{rec.strMeal}</h4>
           </div>))}
       </div>
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        style={ { position: 'fixed', bottom: '0px' } }
-        onClick={ () => history.push(`${location.pathname}/in-progress`) }
-      >
-        Start Recipe
-
-      </button>
+      { !isRecipeDone
+        && (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            style={ { position: 'fixed', bottom: '0px' } }
+            onClick={ () => history.push(`${location.pathname}/in-progress`) }
+          >
+            {isRecipeInProgress ? (
+              'Continue Recipe'
+            ) : (
+              'Start Recipe'
+            )}
+          </button>
+        )}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import FoodDetailCard from '../components/FoodDetailCard';
 import fetchForDetails from '../services/fetchForDetails';
 import fetchRecomended from '../services/fetchRecomended';
+import './FoodDetails.css';
 
 const MAGICNUMBER = 6;
 
@@ -12,6 +13,13 @@ export default function FoodDetails() {
   const location = useLocation();
   const history = useHistory();
   const id = location.pathname.split('/')[2];
+  const doneRecipes = [];
+  let isRecipeDone = false;
+  if (localStorage.doneRecipes !== undefined) {
+    doneRecipes.push(JSON.parse(localStorage.doneRecipes));
+    isRecipeDone = doneRecipes.find((index) => index.id === details.idMeal);
+  }
+  console.log(isRecipeDone);
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchForDetails('meal', id);
@@ -33,29 +41,33 @@ export default function FoodDetails() {
         src={ details?.strYoutube }
         controls
       />
-      <div style={ { display: 'flex', width: '80vw', overflowx: 'scroll' } }>
+      <section className="carousel_section">
         { recomended.map((rec, i) => (
           <div
+            className="carousel_div"
             key={ i }
             data-testid={ `${i}-recomendation-card` }
           >
             <img
+              className="carousel_imgs"
               src={ rec.strDrinkThumb }
               alt="imagem"
-              style={ { width: '45vw' } }
             />
-            <h4>{rec.strDrink}</h4>
+            <h4 data-testid={ `${i}-recomendation-title` }>{rec.strDrink}</h4>
           </div>))}
-      </div>
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        style={ { position: 'fixed', bottom: '0px' } }
-        onClick={ () => history.push(`${location.pathname}/in-progress`) }
-      >
-        Start Recipe
+      </section>
+      { !isRecipeDone
+        && (
+          <button
+            type="button"
+            data-testid="start-recipe-btn"
+            style={ { position: 'fixed', bottom: '0px' } }
+            onClick={ () => history.push(`${location.pathname}/in-progress`) }
+          >
+            Start Recipe
 
-      </button>
+          </button>
+        )}
     </div>
   );
 }

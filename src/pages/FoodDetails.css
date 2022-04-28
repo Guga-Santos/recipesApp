@@ -1,0 +1,11 @@
+.carousel_section {
+  display: flex;
+  width: 100vw;
+  overflow-x: auto;
+}
+
+.carousel_imgs {
+  flex: none;
+  height: 100%;
+  width: 50vw !important;
+}

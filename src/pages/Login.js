@@ -13,6 +13,7 @@ function Login() {
     const emailRegex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]/i;
     const checkEmail = emailRegex.test(emailValue);
     const passwordLength = passwordValue.length > mingLength;
+    console.log(checkEmail, passwordLength);
     if (checkEmail && passwordLength) {
       setEnableButton(false);
     } else { setEnableButton(true); }

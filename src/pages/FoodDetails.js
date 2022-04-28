@@ -5,7 +5,7 @@ import fetchForDetails from '../services/fetchForDetails';
 import fetchRecomended from '../services/fetchRecomended';
 import './FoodDetails.css';
 
-const MAGICNUMBER = 6;
+const MAGICNUMBER = 6; // teste
 
 export default function FoodDetails() {
   const [details, setDetails] = useState([]);

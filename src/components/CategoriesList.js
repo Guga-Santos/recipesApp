@@ -9,6 +9,7 @@ export default function CategoriesList({ categoriesList, filter }) {
       <button
         onClick={ ({ target: { value } }) => filter(value) }
         value="All"
+        data-testid="All-category-filter"
         type="button"
       >
         All
@@ -19,7 +20,7 @@ export default function CategoriesList({ categoriesList, filter }) {
             type="button"
             key={ `${strCategory}` }
             value={ strCategory }
-            data-testid={ `${index}-category-filter` }
+            data-testid={ `${strCategory}-category-filter` }
             onClick={ ({ target: { value } }) => filter(value) }
           >
             {strCategory}

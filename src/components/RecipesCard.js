@@ -8,9 +8,10 @@ export default function RecipesCard({ image, name, id }) {
     >
       <img
         src={ image }
+        data-testid={ `${id}-card-img` }
         alt="imagem referente a receita"
       />
-      <p>{name}</p>
+      <p data-testid={ `${id}-card-name` }>{name}</p>
     </section>
   );
 }

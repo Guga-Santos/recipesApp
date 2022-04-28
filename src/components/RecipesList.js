@@ -26,7 +26,7 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
         const { strDrink, strDrinkThumb } = array[index];
         recipes
           .push(<RecipesCard
-            key={ `${index}${strMeal}` }
+            key={ `${index}${strDrink}` }
             image={ strDrinkThumb }
             name={ strDrink }
             id={ index }

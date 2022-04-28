@@ -54,10 +54,6 @@ function App() {
           component={ Drinks }
         />
         <Route
-          path="/explore"
-          component={ Explore }
-        />
-        <Route
           path="/explore/foods/ingredients"
           component={ ExploreFoodsIngredients }
         />
@@ -76,6 +72,10 @@ function App() {
         <Route
           path="/explore/drinks"
           component={ ExploreDrinks }
+        />
+        <Route
+          path="/explore"
+          component={ Explore }
         />
         <Route
           path="/profile"

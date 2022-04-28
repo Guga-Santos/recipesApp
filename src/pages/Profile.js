@@ -14,7 +14,7 @@ export default function Profile() {
 
   return (
     <div>
-      <Header />
+      <Header title="Profile" hasSearch={ false } />
       <Footer />
       <h4 data-testid="profile-email">
         {' '}

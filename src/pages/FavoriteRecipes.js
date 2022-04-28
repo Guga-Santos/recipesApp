@@ -3,6 +3,6 @@ import Header from '../components/Header';
 
 export default function FavoriteRecipes() {
   return (
-    <Header />
+    <Header title="Favorite Recipes" hasSearch={ false } />
   );
 }

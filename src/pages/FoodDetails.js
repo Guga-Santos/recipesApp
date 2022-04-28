@@ -1,8 +1,9 @@
 import React from 'react';
-import Header from '../components/Header';
 
 export default function FoodDetails() {
   return (
-    <Header />
+    <div>
+      <h1>Food Details</h1>
+    </div>
   );
 }

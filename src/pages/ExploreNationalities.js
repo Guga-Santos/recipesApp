@@ -12,7 +12,7 @@ export default function ExploreNationalities() {
 
   return (
     <div>
-      <Header />
+      <Header title="Explore Nationalities" hasSearch />
       <select
         value={ selectedCATEG }
         onChange={ ({ target }) => setSelectedCATEG(target.value) }

@@ -9,7 +9,7 @@ export default function Drinks() {
   const { validateCARD, searchData } = contexto;
   return (
     <div>
-      <Header />
+      <Header title="Drinks" hasSearch />
       { validateCARD && <Card data={ searchData.drinks } /> }
       <Footer />
     </div>

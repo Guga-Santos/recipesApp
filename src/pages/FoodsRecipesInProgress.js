@@ -1,8 +1,7 @@
 import React from 'react';
-import Header from '../components/Header';
 
 export default function FoodsRecipesInProgress() {
   return (
-    <Header />
+    <h1>Meals In Progress</h1>
   );
 }

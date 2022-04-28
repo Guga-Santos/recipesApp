@@ -19,6 +19,7 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
             image={ strMealThumb }
             name={ strMeal }
             id={ index }
+            type={ type }
           />);
       }
 
@@ -30,6 +31,7 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
             image={ strDrinkThumb }
             name={ strDrink }
             id={ index }
+            type={ type }
           />);
       }
     }

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Footer from '../components/footer';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
 
@@ -28,6 +29,7 @@ export default function ExploreNationalities() {
           </option>
         ))}
       </select>
+      <Footer />
     </div>
   );
 }

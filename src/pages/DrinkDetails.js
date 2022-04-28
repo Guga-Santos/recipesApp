@@ -13,12 +13,17 @@ export default function DrinkDetails() {
   const history = useHistory();
   const id = location.pathname.split('/')[2];
   const doneRecipes = [];
+  const progressRecipes = [];
   let isRecipeDone = false;
+  let isRecipeInProgress = false;
   if (localStorage.doneRecipes !== undefined) {
     doneRecipes.push(JSON.parse(localStorage.doneRecipes));
     isRecipeDone = doneRecipes.find((index) => index.id === details.idDrink);
   }
-  console.log(isRecipeDone);
+  if (localStorage.inProgressRecipes !== undefined) {
+    progressRecipes.push(JSON.parse(localStorage.inProgressRecipes));
+    isRecipeInProgress = progressRecipes.find((index) => index.id === details.idMeal);
+  }
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchForDetails('cocktail', id);
@@ -55,8 +60,11 @@ export default function DrinkDetails() {
             style={ { position: 'fixed', bottom: '0px' } }
             onClick={ () => history.push(`${location.pathname}/in-progress`) }
           >
-            Start Recipe
-
+            {isRecipeInProgress ? (
+              'Continue Recipe'
+            ) : (
+              'Start Recipe'
+            )}
           </button>
         )}
     </div>

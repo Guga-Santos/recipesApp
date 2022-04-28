@@ -4,12 +4,6 @@ import { Redirect } from 'react-router-dom';
 const MAGICNUMBER = 12;
 
 export default function Card({ data, type }) {
-  // const history = useHistory();
-
-  // if (data?.length === 1 && foodOrDrink) {
-  //   history.push(`/foods/${data[0].idMeal}`);
-  // }
-
   if (data === null) {
     global.alert('Sorry, we haven\'t found any recipes for these filters.');
   }

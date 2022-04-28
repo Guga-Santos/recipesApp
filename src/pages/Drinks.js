@@ -10,7 +10,7 @@ export default function Drinks() {
   return (
     <div>
       <Header title="Drinks" hasSearch />
-      { validateCARD && <Card data={ searchData.drinks } /> }
+      { validateCARD && <Card data={ searchData.drinks } type="Drinks" /> }
       <Footer />
     </div>
   );

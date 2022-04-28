@@ -11,7 +11,7 @@ export default function Foods() {
   return (
     <div>
       <Header title="Foods" hasSearch />
-      { validateCARD && <Card data={ searchData.meals } /> }
+      { validateCARD && <Card data={ searchData.meals } type="Foods" /> }
       <Footer />
     </div>
   );

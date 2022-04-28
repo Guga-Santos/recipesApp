@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 const MAGICNUMBER = 12;
 
-export default function Card({ data }) {
+export default function Card({ data, type }) {
   // const history = useHistory();
 
   // if (data?.length === 1 && foodOrDrink) {
@@ -16,7 +16,12 @@ export default function Card({ data }) {
 
   return (
     data && data.map((obj, index) => index < MAGICNUMBER && (
-      data.length < 2 ? <Redirect push to={ `/foods/${obj.idMeal}` } />
+      data.length < 2
+        ? (
+          <Redirect
+            push
+            to={ type === 'Foods' ? `/foods/${obj.idMeal}` : `/drinks/${obj.idDrink}` }
+          />)
         : (
           <div data-testid={ `${index}-recipe-card` } key={ index }>
             <img

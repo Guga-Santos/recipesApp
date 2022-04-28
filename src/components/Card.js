@@ -1,37 +1,35 @@
-import React, { useContext } from 'react';
-import AppContext from '../context/AppContext';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 const MAGICNUMBER = 12;
 
-export default function Card() {
-  const contexto = useContext(AppContext);
-  const { searchData } = contexto;
-
-  const foodOrDrink = Object.keys(searchData)[0];
+export default function Card({ data, type }) {
+  if (data === null) {
+    global.alert('Sorry, we haven\'t found any recipes for these filters.');
+  }
 
   return (
-    foodOrDrink === 'drinks'
-      ? searchData.drinks.map((obj, index) => index < MAGICNUMBER && (
-        <div data-testid={ `${index}-recipe-card` } key={ index }>
-          <img
-            src={ obj.strDrinkThumb }
-            alt="imagem do drink"
-            className="card-img"
-            data-testid={ `${index}-card-img` }
-          />
-          <h4 data-testid={ `${index}-card-name` }>{obj.strDrink}</h4>
-        </div>
-      ))
-      : searchData.meals.map((obj, index) => index < MAGICNUMBER && (
-        <div data-testid={ `${index}-recipe-card` } key={ index }>
-          <img
-            src={ obj.strMealThumb }
-            alt="imagem do drink"
-            className="card-img"
-            data-testid={ `${index}-card-img` }
-          />
-          <h4 data-testid={ `${index}-card-name` }>{obj.strMeal}</h4>
-        </div>
-      ))
-  );
+    data && data.map((obj, index) => index < MAGICNUMBER && (
+      data.length < 2
+        ? (
+          <Redirect
+            push
+            to={ type === 'Foods' ? `/foods/${obj.idMeal}` : `/drinks/${obj.idDrink}` }
+          />)
+        : (
+          <div data-testid={ `${index}-recipe-card` } key={ index }>
+            <img
+              src={ data[0].strMeal === undefined ? obj.strDrinkThumb : obj.strMealThumb }
+              alt="imagem"
+              className="card-img"
+              data-testid={ `${index}-card-img` }
+            />
+            <h4
+              data-testid={ `${index}-card-name` }
+            >
+              {data[0].strMeal === undefined ? obj.strDrink : obj.strMeal}
+
+            </h4>
+          </div>)
+    )));
 }

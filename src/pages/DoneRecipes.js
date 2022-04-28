@@ -3,6 +3,6 @@ import Header from '../components/Header';
 
 export default function DoneRecipes() {
   return (
-    <Header />
+    <Header title="Done Recipes" hasSearch={ false } />
   );
 }

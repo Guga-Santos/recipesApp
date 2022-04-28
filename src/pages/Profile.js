@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Footer from '../components/footer';
 import Header from '../components/Header';
 
 export default function Profile() {
@@ -13,7 +14,8 @@ export default function Profile() {
 
   return (
     <div>
-      <Header />
+      <Header title="Profile" hasSearch={ false } />
+      <Footer />
       <h4 data-testid="profile-email">
         {' '}
         { getStorage?.email }

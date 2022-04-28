@@ -19,6 +19,8 @@ export default function AppProvider({ children }) {
 
   const [validateCARD, setValidateCARD] = useState(false);
 
+  const [selectedCATEG, setSelectedCATEG] = useState('');
+
   // ComponentDidMount like -----------------------
   const [loading, setLoading] = useState(true);
   // ComponentDidMount link -----------------------
@@ -77,6 +79,8 @@ export default function AppProvider({ children }) {
     searchData,
     query,
     validateCARD,
+    selectedCATEG,
+    setSelectedCATEG,
     getSearchType,
     getQuery,
     fetchSearchOnClick,

@@ -4,7 +4,7 @@ import React from 'react';
 export default function RecipesCard({ image, name, id }) {
   return (
     <section
-      data-testid={ `${id}` }
+      data-testid={ `${id}-recipe-card` }
     >
       <img
         src={ image }

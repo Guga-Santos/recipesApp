@@ -10,7 +10,6 @@ import AppContext from './AppContext';
 export default function AppProvider({ children }) {
   const [recipes, setRecipes] = useState({});
   const [drinks, setDrinks] = useState({});
-
   const [searchFilter, setSearchFilter] = useState('');
   // Input radio selecionado no componente SearchBar
   const [query, setquery] = useState('');
@@ -52,9 +51,8 @@ export default function AppProvider({ children }) {
       });
       setLoading(false);
     };
-
-    recipesAPI();
     drinksAPI();
+    recipesAPI();
   }, []);
   //  --------------------------------------------
 

@@ -2,22 +2,35 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import RecipesCard from './RecipesCard';
 
-const NUMBER_OF_RECIPES_LISTED = 12;
+const MAX_NUMBER_OF_RECIPES_LISTED = 12;
 
 export default function RecipesList({ arrayOfRecipes, recipesType }) {
+  const NUMBER_OF_RECIPES_LISTED = arrayOfRecipes.length < MAX_NUMBER_OF_RECIPES_LISTED
+    ? arrayOfRecipes.length : MAX_NUMBER_OF_RECIPES_LISTED;
+
   const listRecipes = (array, listLength, type) => {
     const recipes = [];
     for (let index = 0; index < listLength; index += 1) {
-      const { strMealThumb, strMeal, idMeal } = array[index];
-      const { strDrink, strDrinkThumb, idDrink } = array[index];
-      if (type === '/food') {
+      if (type === '/foods') {
+        const { strMealThumb, strMeal } = array[index];
         recipes
-          .push(<RecipesCard image={ strMealThumb } name={ strMeal } id={ idMeal } />);
+          .push(<RecipesCard
+            key={ `${index}${strMeal}` }
+            image={ strMealThumb }
+            name={ strMeal }
+            id={ index }
+          />);
       }
 
-      if (type === '/drink') {
+      if (type === '/drinks') {
+        const { strDrink, strDrinkThumb } = array[index];
         recipes
-          .push(<RecipesCard image={ strDrinkThumb } name={ strDrink } id={ idDrink } />);
+          .push(<RecipesCard
+            key={ `${index}${strMeal}` }
+            image={ strDrinkThumb }
+            name={ strDrink }
+            id={ index }
+          />);
       }
     }
     return recipes;

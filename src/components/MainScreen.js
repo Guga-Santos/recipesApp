@@ -22,7 +22,6 @@ export default function MainScreen({ history }) {
     return <div>carregando</div>;
   }
 
-  console.log(Object.keys(foods.recipesList));
   return (
     <section>
 

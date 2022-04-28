@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function RecipesCard({ image, name, id, type }) {
+export default function RecipesCard({ image, name, id, type, idType }) {
   return (
     <section
       data-testid={ `${id}-recipe-card` }
     >
-      <Link to={ type === 'Foods' ? `/foods/${id}` : `/drinks/${id}` }>
+      <Link to={ type === '/foods' ? `/foods/${idType}` : `/drinks/${idType}` }>
         <img
           src={ image }
           data-testid={ `${id}-card-img` }
@@ -24,4 +24,6 @@ RecipesCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  idType: PropTypes.string.isRequired,
+
 };

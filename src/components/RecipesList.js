@@ -10,9 +10,10 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
 
   const listRecipes = (array, listLength, type) => {
     const recipes = [];
+    console.log(array);
     for (let index = 0; index < listLength; index += 1) {
       if (type === '/foods') {
-        const { strMealThumb, strMeal } = array[index];
+        const { strMealThumb, strMeal, idMeal } = array[index];
         recipes
           .push(<RecipesCard
             key={ `${index}${strMeal}` }
@@ -20,11 +21,12 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
             name={ strMeal }
             id={ index }
             type={ type }
+            idType={ idMeal }
           />);
       }
 
       if (type === '/drinks') {
-        const { strDrink, strDrinkThumb } = array[index];
+        const { strDrink, strDrinkThumb, idDrink } = array[index];
         recipes
           .push(<RecipesCard
             key={ `${index}${strDrink}` }
@@ -32,6 +34,7 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
             name={ strDrink }
             id={ index }
             type={ type }
+            idType={ idDrink }
           />);
       }
     }

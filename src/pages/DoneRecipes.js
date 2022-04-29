@@ -61,11 +61,9 @@ export default function DoneRecipes() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => filterRecipesBytype(filter), [filter]);
 
-  return (
-    <>
-      <Header title="Done Recipes" hasSearch={ false } />
-      <DoneRecipesFilters setFilter={ setFilter } />
-      {recipesFiltered.map((recipeInfo, index) => (
+  const recipesFilteredFunc = () => {
+    if (recipesFiltered !== null) {
+      const recipesFilteredMap = recipesFiltered.map((recipeInfo, index) => (
         <DoneRecipesCard
           key={ `${index}${recipeInfo.name}` }
           recipeImage={ recipeInfo.image }
@@ -78,8 +76,17 @@ export default function DoneRecipes() {
           recipeType={ recipeInfo.type }
           isAlcoholic={ recipeInfo.alcoholicOrNot }
         />
-      ))}
+      ));
+      return recipesFilteredMap;
+    }
+    return <p>No done recipes</p>;
+  };
 
-    </>
+  return (
+    <div>
+      <Header title="Done Recipes" hasSearch={ false } />
+      <DoneRecipesFilters setFilter={ setFilter } />
+      {recipesFilteredFunc()}
+    </div>
   );
 }

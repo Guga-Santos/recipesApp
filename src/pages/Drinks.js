@@ -11,6 +11,7 @@ export default function Drinks(props) {
   return (
     <div>
       <Header title="Drinks" hasSearch />
+      {/*       A linha 15 acredito que pode ser retirada. */}
       { validateCARD && <Card data={ searchData.drinks } type="Drinks" /> }
       {!validateCARD && <MainScreen { ...props } />}
       <Footer />

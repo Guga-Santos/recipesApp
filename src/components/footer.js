@@ -17,22 +17,22 @@ function Footer() {
           className="footer_icons"
         />
       </Link>
-      <a href="/explore">
+      <Link to="/explore">
         <img
           src={ ExploreIcon }
           alt="Explore Icon"
           data-testid="explore-bottom-btn"
           className="footer_icons"
         />
-      </a>
-      <a href="/foods">
+      </Link>
+      <Link to="/foods">
         <img
           src={ MealIcon }
           alt="meal Icon"
           data-testid="food-bottom-btn"
           className="footer_icons"
         />
-      </a>
+      </Link>
     </div>
   );
 }

@@ -40,18 +40,30 @@ const mock = [
   },
 ];
 export default function DoneRecipes() {
-  const [doneRecipesInfo, setDoneRecipesInfo] = useState(mock);
-  const [filter, setFilter] = useState('');
-  console.log(filter);
-  console.log(doneRecipesInfo);
+  const [doneRecipesInfo, setDoneRecipesInfo] = useState([]);
+  const [recipesFiltered, setRecipesFiltered] = useState([]);
+  const [filter, setFilter] = useState('All');
   useEffect(() => {
     setDoneRecipesInfo(mock);
+    setRecipesFiltered(filter);
   }, []);
+
+  const filterRecipesBytype = (filterByType) => {
+    if (filterByType === 'All') {
+      return setRecipesFiltered(doneRecipesInfo);
+    }
+    const doneRecipesFiltered = doneRecipesInfo
+      .filter((recipeInfo) => recipeInfo.type === filterByType);
+    setRecipesFiltered(doneRecipesFiltered);
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => filterRecipesBytype(filter), [filter]);
+
   return (
     <>
       <Header title="Done Recipes" hasSearch={ false } />
       <DoneRecipesFilters setFilter={ setFilter } />
-      {doneRecipesInfo.map((recipeInfo, index) => (
+      {recipesFiltered.map((recipeInfo, index) => (
         <DoneRecipesCard
           key={ `${index}${recipeInfo.name}` }
           recipeImage={ recipeInfo.image }

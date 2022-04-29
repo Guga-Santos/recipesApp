@@ -16,7 +16,7 @@ export default function DoneRecipesFilters({ setFilter }) {
       <button
         data-testid="filter-by-food-btn"
         type="button"
-        value="Foods"
+        value="Food"
         onClick={ ({ target: { value } }) => setFilter(value) }
       >
         Foods
@@ -25,7 +25,7 @@ export default function DoneRecipesFilters({ setFilter }) {
       <button
         data-testid="filter-by-drink-btn"
         type="button"
-        value="Drinks"
+        value="Drink"
         onClick={ ({ target: { value } }) => setFilter(value) }
       >
         Drinks

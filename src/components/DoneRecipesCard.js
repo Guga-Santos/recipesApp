@@ -14,15 +14,7 @@ export default function DoneRecipesCard(props) {
     recipeType,
     isAlcoholic,
   } = props;
-  console.log(recipeImage,
-    recipeName,
-    recipeCategory,
-    recipeNationality,
-    recipeDate,
-    recipeTag,
-    recipeIndex,
-    recipeType,
-    isAlcoholic);
+
   if (recipeType === 'Food') {
     return (
       <div>

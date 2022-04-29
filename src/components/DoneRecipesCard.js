@@ -15,7 +15,7 @@ export default function DoneRecipesCard(props) {
     isAlcoholic,
   } = props;
 
-  if (recipeType === 'Food') {
+  /*   if (recipeType === 'Food') {
     return (
       <div>
         <img
@@ -62,7 +62,67 @@ export default function DoneRecipesCard(props) {
         />
       </div>
     );
-  }
+  } */
+
+  const renderCards = (Type) => {
+    switch (Type) {
+    case 'food':
+      return (
+        <div>
+          <img
+            data-testid={ `${recipeIndex}-horizontal-image` }
+            src={ recipeImage }
+            alt="imagem da receita feita"
+          />
+          <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          <p data-testid={ `${recipeIndex}-horizontal-top-text` }>
+            {`${recipeNationality} - ${recipeCategory}`}
+          </p>
+          <p data-testid={ `${recipeIndex}-horizontal-done-date` }>{recipeDate}</p>
+          {recipeTag.map((recipe, index) => (
+            index < 2 && (
+              <span
+                data-testid={ `${0}-${recipe}-horizontal-tag` }
+                key={ `${recipe}${index}` }
+              >
+                {recipe}
+              </span>)
+          ))}
+          <img
+            data-testid={ `${recipeIndex}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt="icone de compartilhamento"
+          />
+        </div>
+      );
+    case 'drink':
+      return (
+        <div>
+          <img
+            data-testid={ `${recipeIndex}-horizontal-image` }
+            src={ recipeImage }
+            alt="imagem da receita feita"
+          />
+          <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          <p data-testid={ `${recipeIndex}-horizontal-top-text` }>{isAlcoholic}</p>
+          <p data-testid={ `${recipeIndex}-horizontal-done-date` }>{recipeDate}</p>
+          <img
+            data-testid={ `${recipeIndex}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt="icone de compartilhamento"
+          />
+        </div>
+      );
+    default:
+      break;
+    }
+  };
+
+  return (
+    <div>
+      {renderCards(recipeType)}
+    </div>
+  );
 }
 
 DoneRecipesCard.propTypes = {
@@ -70,7 +130,7 @@ DoneRecipesCard.propTypes = {
   recipeDate: PropTypes.string.isRequired,
   recipeImage: PropTypes.string.isRequired,
   recipeName: PropTypes.string.isRequired,
-  recipeTag: PropTypes.string.isRequired,
+  recipeTag: PropTypes.instanceOf(Array).isRequired,
   recipeIndex: PropTypes.number.isRequired,
   recipeType: PropTypes.string.isRequired,
   recipeNationality: PropTypes.string.isRequired,

@@ -62,7 +62,7 @@ export default function DoneRecipes() {
   useEffect(() => filterRecipesBytype(filter), [filter]);
 
   const recipesFilteredFunc = () => {
-    if (recipesFiltered !== null) {
+    if (recipesFiltered !== null && recipesFiltered.length !== 0) {
       const recipesFilteredMap = recipesFiltered.map((recipeInfo, index) => (
         <DoneRecipesCard
           key={ `${index}${recipeInfo.name}` }
@@ -77,6 +77,7 @@ export default function DoneRecipes() {
           isAlcoholic={ recipeInfo.alcoholicOrNot }
         />
       ));
+      console.log(recipesFiltered);
       return recipesFilteredMap;
     }
     return <p>No done recipes</p>;

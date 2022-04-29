@@ -25,10 +25,10 @@ export default function DrinkDetailCard({ data }) {
   useEffect(() => {
     const fetchData = async () => {
       setMeasure(Object.entries(data).filter((str) => str[0]
-        .includes('strMeasure') && str[1]));
+        .includes('strMeasure')));
 
       setIngredients(Object.entries(data).filter((str) => str[0]
-        .includes('strIngredient') && str[1]));
+        .includes('strIngredient')));
     };
     fetchData();
   }, [data]);

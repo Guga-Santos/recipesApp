@@ -7,7 +7,7 @@ export default function RecipesCard({ image, name, id, type, idType }) {
     <section
       data-testid={ `${id}-recipe-card` }
     >
-      <Link to={ type === '/foods' ? `/foods/${idType}` : `/drinks/${idType}` }>
+      <Link to={ `${type}/${idType}` }>
         <img
           src={ image }
           data-testid={ `${id}-card-img` }

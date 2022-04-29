@@ -55,6 +55,8 @@ export default function FoodDetailCard({ data }) {
 
     if (!favorited) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([...get, favoriteRecipes]));
+      localStorage.setItem('doneRecipes', JSON.stringify([...get, favoriteRecipes]));
+      // id: "53060"
       setFavorited(true);
     }
     if (favorited) {

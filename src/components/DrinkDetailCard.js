@@ -12,7 +12,7 @@ export default function DrinkDetailCard({ data }) {
   const [copied, setCopied] = useState(false);
   const [favorited, setFavorited] = useState(false);
 
-  const favoriteRecipes = [{
+  const favoriteRecipes = {
     id: data.idDrink,
     type: 'drink',
     nationality: '',
@@ -20,7 +20,7 @@ export default function DrinkDetailCard({ data }) {
     alcoholicOrNot: data.strAlcoholic,
     name: data.strDrink,
     image: data.strDrinkThumb,
-  }];
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,13 +36,27 @@ export default function DrinkDetailCard({ data }) {
   useEffect(() => {
     const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (getStorage) {
-      setFavorited(getStorage[0]?.id === data.idDrink);
+      setFavorited(getStorage.some((obj) => obj.id === data.idDrink));
     }
   }, [data.idDrink]);
 
   const handleFavorited = () => {
-    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
-    setFavorited(true);
+    let get = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+    if (!get) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+      get = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    }
+
+    if (!favorited) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([...get, favoriteRecipes]));
+      setFavorited(true);
+    }
+    if (favorited) {
+      const filter = get.filter((obj) => obj.id !== data.idDrink);
+      localStorage.setItem('favoriteRecipes', JSON.stringify([...filter]));
+      setFavorited(false);
+    }
   };
 
   const handleShare = () => {

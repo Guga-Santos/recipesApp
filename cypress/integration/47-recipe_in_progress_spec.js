@@ -6,7 +6,7 @@ afterEach(() => {
   });
 });
 
-describe('47 - Desenvolva a tela de maneira que contenha uma imagem da receita, seu titulo, sua categoria (ou se a bebida é alcoólica ou não) uma lista de ingredientes com suas respectivas quantidades e suas instruções', () => {
+describe.only('47 - Desenvolva a tela de maneira que contenha uma imagem da receita, seu titulo, sua categoria (ou se a bebida é alcoólica ou não) uma lista de ingredientes com suas respectivas quantidades e suas instruções', () => {
   it('verifica elementos de uma receita de comida', () => {
     cy.visit('http://localhost:3000/foods/52771/in-progress', {
       onBeforeLoad(win) {
@@ -42,7 +42,7 @@ describe('47 - Desenvolva a tela de maneira que contenha uma imagem da receita, 
   });
 });
 
-describe('48 - Desenvolva um checkbox para cada item da lista de ingredientes', () => {
+describe.only('48 - Desenvolva um checkbox para cada item da lista de ingredientes', () => {
   it('todos os ingredientes de uma receita de comida possuem um checkbox', () => {
     cy.visit('http://localhost:3000/foods/52771/in-progress', {
       onBeforeLoad(win) {

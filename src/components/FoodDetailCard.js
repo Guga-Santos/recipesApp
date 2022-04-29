@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
-export default function FoodDetailCard({ data }) {
+export default function FoodDetailCard({ data, hasCheckBox }) {
   const location = useLocation();
 
   const [ingredients, setIngredients] = useState([]);
@@ -89,12 +89,17 @@ export default function FoodDetailCard({ data }) {
         {/* Depois tentar refatorar essa parte */}
         {ingredients
           .map((obj, i) => (
-            <h4
+            <div
+              data-testid={ `${i}-ingredient-step` }
               key={ i }
-              data-testid={ `${i}-ingredient-name-and-measure` }
             >
-              {`${obj[1]} - ${measure[i][1]}`}
-            </h4>))}
+              <h4
+                data-testid={ `${i}-ingredient-name-and-measure` }
+              >
+                {`${obj[1]} - ${measure[i][1]}`}
+              </h4>
+              {hasCheckBox && <input type="checkbox" />}
+            </div>))}
       </div>
       <div className="instructions-container">
         <h3>Instructions:</h3>
@@ -134,4 +139,5 @@ FoodDetailCard.propTypes = {
     idMeal: PropTypes.string,
     strArea: PropTypes.string,
   }).isRequired,
+  hasCheckBox: PropTypes.bool.isRequired,
 };

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import '../css/Details.css';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
@@ -11,6 +12,7 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
   const [measure, setMeasure] = useState([]);
   const [copied, setCopied] = useState(false);
   const [favorited, setFavorited] = useState(false);
+  const [checkeds, setCheckeds] = useState({});
 
   const favoriteRecipes = {
     id: data.idDrink,
@@ -64,6 +66,13 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
     setCopied(true);
   };
 
+  const handleChecked = ({ target }) => {
+    setCheckeds({
+      ...checkeds,
+      [target.id]: target.checked,
+    });
+  };
+
   return (
     <div className="detail-card-container">
       <img
@@ -94,10 +103,16 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
             >
               <h4
                 data-testid={ `${i}-ingredient-name-and-measure` }
+                className="checked"
               >
                 { `${obj[1]} - ${measure[i][1]}`}
               </h4>
-              {hasCheckBox && <input type="checkbox" />}
+              {hasCheckBox
+              && <input
+                type="checkbox"
+                id={ i }
+                onChange={ (e) => handleChecked(e) }
+              />}
             </div>))}
       </div>
       <div className="instructions-container">

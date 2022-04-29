@@ -1,13 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Card from '../components/Card';
 import Footer from '../components/footer';
 import Header from '../components/Header';
-import AppContext from '../context/AppContext';
 import MainScreen from '../components/MainScreen';
+import AppContext from '../context/AppContext';
 
 export default function Foods(props) {
   const contexto = useContext(AppContext);
   const { validateCARD, searchData } = contexto;
+
+  useEffect(() => {
+    const get = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+    if (!get) {
+      localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+    }
+  }, []);
 
   return (
     <div>

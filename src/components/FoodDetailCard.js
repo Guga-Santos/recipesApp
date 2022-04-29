@@ -7,6 +7,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 export default function FoodDetailCard({ data, hasCheckBox }) {
   const location = useLocation();
+  const id = location.pathname.split('/')[2];
 
   const [ingredients, setIngredients] = useState([]);
   const [measure, setMeasure] = useState([]);
@@ -43,7 +44,7 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
   }, [data.idMeal]);
 
   const handleShare = () => {
-    navigator.clipboard.writeText(`http://localhost:3000${location.pathname}`);
+    navigator.clipboard.writeText(`http://localhost:3000/foods/${id}`);
     setCopied(true);
   };
 

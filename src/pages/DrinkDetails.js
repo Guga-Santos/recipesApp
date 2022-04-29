@@ -57,10 +57,10 @@ export default function DrinkDetails() {
       document.getElementById(imageIndex + 1).removeAttribute('style');
       setImageIndex(2);
     };
-    if (document.getElementById(imageIndex) !== null) {
+    if (document.getElementById(imageIndex) !== null && imageIndex === 0) {
       firstPageLoad();
     }
-  }, [drinkMap]);
+  }, [drinkMap, imageIndex]);
 
   const nextButton = () => {
     console.log(imageIndex);

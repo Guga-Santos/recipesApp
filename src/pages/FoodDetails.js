@@ -58,12 +58,11 @@ export default function FoodDetails() {
       document.getElementById(imageIndex).removeAttribute('style');
       document.getElementById(imageIndex + 1).removeAttribute('style');
       setImageIndex(2);
-      console.log('entrei no fist');
     };
     if (document.getElementById(imageIndex) !== null && imageIndex === 0) {
       firstPageLoad();
     }
-  }, [foodMap]);
+  }, [foodMap, imageIndex]);
 
   const nextButton = () => {
     console.log(imageIndex);

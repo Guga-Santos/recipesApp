@@ -35,7 +35,7 @@ export default function FoodDetails() {
       console.log(randomData.drinks.slice(0, MAGICNUMBER));
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   const foodMap = recomended.map((rec, i) => (
     <div

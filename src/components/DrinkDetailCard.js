@@ -1,7 +1,55 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 export default function DrinkDetailCard({ data }) {
+  const location = useLocation();
+
+  const [ingredients, setIngredients] = useState([]);
+  const [measure, setMeasure] = useState([]);
+  const [copied, setCopied] = useState(false);
+  const [favorited, setFavorited] = useState(false);
+
+  const favoriteRecipes = [{
+    id: data.idDrink,
+    type: 'drink',
+    nationality: '',
+    category: data.strCategory,
+    alcoholicOrNot: data.strAlcoholic,
+    name: data.strDrink,
+    image: data.strDrinkThumb,
+  }];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setMeasure(Object.entries(data).filter((str) => str[0]
+        .includes('strMeasure') && str[1]));
+
+      setIngredients(Object.entries(data).filter((str) => str[0]
+        .includes('strIngredient') && str[1]));
+    };
+    fetchData();
+  }, [data]);
+
+  useEffect(() => {
+    const getStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (getStorage) {
+      setFavorited(getStorage[0]?.id === data.idDrink);
+    }
+  }, [data.idDrink]);
+
+  const handleFavorited = () => {
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+    setFavorited(true);
+  };
+
+  const handleShare = () => {
+    navigator.clipboard.writeText(`http://localhost:3000${location.pathname}`);
+    setCopied(true);
+  };
+
   return (
     <div className="detail-card-container">
       <img
@@ -24,21 +72,14 @@ export default function DrinkDetailCard({ data }) {
       <div className="ingredients-container">
         <h2>Ingredients:</h2>
         {/* Depois tentar refatorar essa parte */}
-        <h4
-          data-testid="0-ingredient-name-and-measure"
-        >
-          {`${data.strIngredient1} - ${data.strMeasure1}`}
-        </h4>
-        <h4
-          data-testid="1-ingredient-name-and-measure"
-        >
-          {`${data.strIngredient2} - ${data.strMeasure2}`}
-        </h4>
-        <h4
-          data-testid="2-ingredient-name-and-measure"
-        >
-          {`${data.strIngredient3} - ${data.strMeasure3}`}
-        </h4>
+        {ingredients
+          .map((obj, i) => (
+            <h4
+              key={ i }
+              data-testid={ `${i}-ingredient-name-and-measure` }
+            >
+              {`${obj[1]} - ${measure[i][1]}`}
+            </h4>))}
       </div>
       <div className="instructions-container">
         <h3>Instructions:</h3>
@@ -50,17 +91,19 @@ export default function DrinkDetailCard({ data }) {
       <button
         type="button"
         data-testid="share-btn"
+        onClick={ () => handleShare() }
       >
-        Share
+        {copied ? 'Link copied!' : 'Share'}
 
       </button>
       <button
         type="button"
         data-testid="favorite-btn"
+        onClick={ () => handleFavorited() }
+        src={ favorited ? blackHeartIcon : whiteHeartIcon }
       >
-        Favorite
+        <img src={ favorited ? blackHeartIcon : whiteHeartIcon } alt="imagem" />
       </button>
-
     </div>
   );
 }
@@ -70,12 +113,8 @@ DrinkDetailCard.propTypes = {
     strDrinkThumb: PropTypes.string,
     strDrink: PropTypes.string,
     strAlcoholic: PropTypes.string,
-    strIngredient1: PropTypes.string,
-    strIngredient2: PropTypes.string,
-    strIngredient3: PropTypes.string,
-    strMeasure1: PropTypes.string,
-    strMeasure2: PropTypes.string,
-    strMeasure3: PropTypes.string,
     strInstructions: PropTypes.string,
+    strCategory: PropTypes.string,
+    idDrink: PropTypes.string,
   }).isRequired,
 };

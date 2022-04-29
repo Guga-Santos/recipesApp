@@ -57,18 +57,31 @@ export default function FoodDetails() {
     const firstPageLoad = () => {
       document.getElementById(imageIndex).removeAttribute('style');
       document.getElementById(imageIndex + 1).removeAttribute('style');
-      setImageIndex(1);
+      setImageIndex(2);
+      console.log('entrei no fist');
     };
-    if (document.getElementById(imageIndex) !== null) {
+    if (document.getElementById(imageIndex) !== null && imageIndex === 0) {
       firstPageLoad();
     }
   }, [foodMap]);
 
   const nextButton = () => {
-    const imageIndexPlus = imageIndex + 1;
-    document.getElementById(imageIndex).removeAttribute('style');
-    document.getElementById(imageIndex + 1).removeAttribute('style');
-    setImageIndex(imageIndexPlus);
+    console.log(imageIndex);
+    if (imageIndex === MAGICNUMBER - 1) {
+      document.getElementById(imageIndex).style.display = 'none';
+      document.getElementById(imageIndex - 1).style.display = 'none';
+      document.getElementById(0).removeAttribute('style');
+      document.getElementById(1).removeAttribute('style');
+      setImageIndex(2);
+    } else {
+      const imageIndexPlus = imageIndex + 1;
+      document.getElementById(imageIndex).removeAttribute('style');
+      document.getElementById(imageIndex + 1).removeAttribute('style');
+      document.getElementById(imageIndex - 2).style.display = 'none';
+      document.getElementById(imageIndex - 1).style.display = 'none';
+      console.log(imageIndexPlus);
+      setImageIndex(imageIndexPlus);
+    }
   };
 
   return (
@@ -84,9 +97,6 @@ export default function FoodDetails() {
       />
       <button type="button" onClick={ nextButton }>
         Next
-      </button>
-      <button type="button">
-        Previous
       </button>
       <section className="carousel_section">
         { foodMap }

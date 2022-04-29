@@ -1,11 +1,10 @@
 .carousel_section {
   display: flex;
   overflow-x: auto;
-  width: 100vw;
+  width: 340px;
 }
 
 .carousel_imgs {
-  flex: none;
   height: 100%;
   width: 50vw;
 }

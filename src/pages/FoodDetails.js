@@ -3,13 +3,14 @@ import { useHistory, useLocation } from 'react-router-dom';
 import FoodDetailCard from '../components/FoodDetailCard';
 import fetchForDetails from '../services/fetchForDetails';
 import fetchRecomended from '../services/fetchRecomended';
-import './FoodDetails.css';
+import './DetailsPage.css';
 
 const MAGICNUMBER = 6; // teste
 
 export default function FoodDetails() {
   const [details, setDetails] = useState([]);
   const [recomended, setRecomended] = useState([]);
+  const [imageIndex, setImageIndex] = useState(0);
   const location = useLocation();
   const history = useHistory();
   const id = location.pathname.split('/')[2];
@@ -35,6 +36,41 @@ export default function FoodDetails() {
     };
     fetchData();
   }, []);
+
+  const foodMap = recomended.map((rec, i) => (
+    <div
+      className="carousel_div"
+      key={ i }
+      id={ i }
+      data-testid={ `${i}-recomendation-card` }
+      style={ { display: 'none' } }
+    >
+      <img
+        className="carousel_imgs"
+        src={ rec.strDrinkThumb }
+        alt="imagem"
+      />
+      <h4 data-testid={ `${i}-recomendation-title` }>{rec.strDrink}</h4>
+    </div>));
+
+  useEffect(() => {
+    const firstPageLoad = () => {
+      document.getElementById(imageIndex).removeAttribute('style');
+      document.getElementById(imageIndex + 1).removeAttribute('style');
+      setImageIndex(1);
+    };
+    if (document.getElementById(imageIndex) !== null) {
+      firstPageLoad();
+    }
+  }, [foodMap]);
+
+  const nextButton = () => {
+    const imageIndexPlus = imageIndex + 1;
+    document.getElementById(imageIndex).removeAttribute('style');
+    document.getElementById(imageIndex + 1).removeAttribute('style');
+    setImageIndex(imageIndexPlus);
+  };
+
   return (
     <div>
       <h1>Food Details</h1>
@@ -46,20 +82,14 @@ export default function FoodDetails() {
         src={ details?.strYoutube }
         controls
       />
+      <button type="button" onClick={ nextButton }>
+        Next
+      </button>
+      <button type="button">
+        Previous
+      </button>
       <section className="carousel_section">
-        { recomended.map((rec, i) => (
-          <div
-            className="carousel_div"
-            key={ i }
-            data-testid={ `${i}-recomendation-card` }
-          >
-            <img
-              className="carousel_imgs"
-              src={ rec.strDrinkThumb }
-              alt="imagem"
-            />
-            <h4 data-testid={ `${i}-recomendation-title` }>{rec.strDrink}</h4>
-          </div>))}
+        { foodMap }
       </section>
       { !isRecipeDone
         && (

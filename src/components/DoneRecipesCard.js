@@ -83,6 +83,7 @@ export default function DoneRecipesCard(props) {
               data-testid={ `${recipeIndex}-horizontal-image` }
               src={ recipeImage }
               alt="imagem da receita feita"
+              style={ { pointerEvents: 'auto' } }
             />
             <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
           </Link>

@@ -15,6 +15,7 @@ function Footer() {
           alt="Drink Icon"
           data-testid="drinks-bottom-btn"
           className="footer_icons"
+          style={ { pointerEvents: 'auto' } }
         />
       </Link>
       <Link to="/explore">
@@ -23,6 +24,7 @@ function Footer() {
           alt="Explore Icon"
           data-testid="explore-bottom-btn"
           className="footer_icons"
+          style={ { pointerEvents: 'auto' } }
         />
       </Link>
       <Link to="/foods">
@@ -31,6 +33,7 @@ function Footer() {
           alt="meal Icon"
           data-testid="food-bottom-btn"
           className="footer_icons"
+          style={ { pointerEvents: 'auto' } }
         />
       </Link>
     </div>

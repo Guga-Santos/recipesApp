@@ -16,6 +16,7 @@ code {
 
 img {
   max-width: 200px;
+  pointer-events: none;
 }
 
 .card-div {

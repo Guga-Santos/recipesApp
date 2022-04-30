@@ -26,6 +26,7 @@ export default function Card({ data, type }) {
               alt="imagem"
               className="card-img"
               data-testid={ `${index}-card-img` }
+              style={ { pointerEvents: 'auto' } }
             />
             <h4
               data-testid={ `${index}-card-name` }

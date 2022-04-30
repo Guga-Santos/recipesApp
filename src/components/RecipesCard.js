@@ -12,6 +12,7 @@ export default function RecipesCard({ image, name, id, type, idType }) {
           src={ image }
           data-testid={ `${id}-card-img` }
           alt="imagem referente a receita"
+          style={ { pointerEvents: 'auto' } }
         />
         <p data-testid={ `${id}-card-name` }>{name}</p>
       </Link>

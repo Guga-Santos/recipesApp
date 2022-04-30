@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import shareIcon from '../images/shareIcon.svg';
 
 export default function DoneRecipesCard(props) {
+  const [copied, setcopied] = useState(false);
+
   const {
     recipeImage,
     recipeName,
@@ -13,7 +15,13 @@ export default function DoneRecipesCard(props) {
     recipeIndex,
     recipeType,
     isAlcoholic,
+    recipeId,
   } = props;
+
+  const handleClick = () => {
+    setcopied(!copied);
+    navigator.clipboard.writeText(`http://localhost:3000/foods/${recipeId}`);
+  };
 
   /*   if (recipeType === 'Food') {
     return (
@@ -88,11 +96,19 @@ export default function DoneRecipesCard(props) {
                 {recipe}
               </span>)
           ))}
-          <img
+          <button
+            type="button"
             data-testid={ `${recipeIndex}-horizontal-share-btn` }
             src={ shareIcon }
-            alt="icone de compartilhamento"
-          />
+            onClick={ () => handleClick() }
+          >
+            {copied ? 'Link copied!'
+              : (
+                <img
+                  src={ shareIcon }
+                  alt="icone de compartilhamento"
+                />)}
+          </button>
         </div>
       );
     case 'drink':
@@ -135,4 +151,5 @@ DoneRecipesCard.propTypes = {
   recipeType: PropTypes.string.isRequired,
   recipeNationality: PropTypes.string.isRequired,
   isAlcoholic: PropTypes.string.isRequired,
+  recipeId: PropTypes.string.isRequired,
 };

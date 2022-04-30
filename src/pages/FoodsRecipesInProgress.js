@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import FoodDetailCard from '../components/FoodDetailCard';
 import fetchForDetails from '../services/fetchForDetails';
 
 export default function FoodsRecipesInProgress() {
   const [details, setDetails] = useState([]);
+
   const location = useLocation();
   const id = location.pathname.split('/')[2];
+
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +19,11 @@ export default function FoodsRecipesInProgress() {
     };
     fetchData();
   }, [id]);
+
+  const handleClick = () => {
+    history.push('/done-recipes');
+  };
+
   return (
     <div>
       <h1>Meals In Progress</h1>
@@ -23,6 +31,7 @@ export default function FoodsRecipesInProgress() {
       <button
         type="button"
         data-testid="finish-recipe-btn"
+        onClick={ () => handleClick() }
       >
         Finish
 

@@ -84,7 +84,7 @@ describe('14 - Posicione a barra logo abaixo do header e implemente 3 radio butt
   });
 });
 
-describe.only('15 - Busque na API de comidas caso a pessoa esteja na página de comidas e na de bebidas caso esteja na de bebidas', () => {
+describe('15 - Busque na API de comidas caso a pessoa esteja na página de comidas e na de bebidas caso esteja na de bebidas', () => {
   it('Na tela de bebidas, se o radio selecionado for Ingredient, a busca na API é feita corretamente pelo ingrediente', () => {
     cy.visit('http://localhost:3000/drinks', {
       onBeforeLoad(win) {

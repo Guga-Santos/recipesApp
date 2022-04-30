@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 
 export default function DoneRecipesCard(props) {
@@ -20,7 +21,7 @@ export default function DoneRecipesCard(props) {
 
   const handleClick = () => {
     setcopied(!copied);
-    navigator.clipboard.writeText(`http://localhost:3000/foods/${recipeId}`);
+    navigator.clipboard.writeText(`http://localhost:3000/${recipeType}s/${recipeId}`);
   };
 
   /*   if (recipeType === 'Food') {
@@ -77,12 +78,14 @@ export default function DoneRecipesCard(props) {
     case 'food':
       return (
         <div>
-          <img
-            data-testid={ `${recipeIndex}-horizontal-image` }
-            src={ recipeImage }
-            alt="imagem da receita feita"
-          />
-          <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          <Link to={ `/${recipeType}s/${recipeId}` }>
+            <img
+              data-testid={ `${recipeIndex}-horizontal-image` }
+              src={ recipeImage }
+              alt="imagem da receita feita"
+            />
+            <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          </Link>
           <p data-testid={ `${recipeIndex}-horizontal-top-text` }>
             {`${recipeNationality} - ${recipeCategory}`}
           </p>
@@ -114,12 +117,14 @@ export default function DoneRecipesCard(props) {
     case 'drink':
       return (
         <div>
-          <img
-            data-testid={ `${recipeIndex}-horizontal-image` }
-            src={ recipeImage }
-            alt="imagem da receita feita"
-          />
-          <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          <Link to={ `/${recipeType}s/${recipeId}` }>
+            <img
+              data-testid={ `${recipeIndex}-horizontal-image` }
+              src={ recipeImage }
+              alt="imagem da receita feita"
+            />
+            <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          </Link>
           <p data-testid={ `${recipeIndex}-horizontal-top-text` }>{isAlcoholic}</p>
           <p data-testid={ `${recipeIndex}-horizontal-done-date` }>{recipeDate}</p>
           <img

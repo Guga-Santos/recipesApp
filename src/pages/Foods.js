@@ -20,8 +20,10 @@ export default function Foods(props) {
   return (
     <div>
       <Header title="Foods" hasSearch />
-      { validateCARD && <Card data={ searchData.meals } type="Foods" /> }
-      {!validateCARD && <MainScreen { ...props } />}
+      <div className="cards-box">
+        { validateCARD && <Card data={ searchData.meals } type="Foods" /> }
+        {!validateCARD && <MainScreen { ...props } />}
+      </div>
       <Footer />
     </div>
   );

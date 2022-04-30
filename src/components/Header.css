@@ -3,6 +3,5 @@
   flex-direction: row;
   height: auto;
   justify-content: space-between;
-  max-width: 100%;
-  width: 100vw;
+  max-width: 84vw;
 }

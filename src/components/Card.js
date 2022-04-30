@@ -9,7 +9,8 @@ export default function Card({ data, type }) {
   }
   console.log('Entrei no card');
   return (
-    data && data.map((obj, index) => index < MAGICNUMBER && (
+    data
+    && data.map((obj, index) => index < MAGICNUMBER && (
       data.length < 2
         ? (
           <Redirect

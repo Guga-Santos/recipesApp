@@ -10,7 +10,6 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
 
   const listRecipes = (array, listLength, type) => {
     const recipes = [];
-    console.log(array);
     for (let index = 0; index < listLength; index += 1) {
       if (type === '/foods') {
         const { strMealThumb, strMeal, idMeal } = array[index];
@@ -48,6 +47,6 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
 }
 
 RecipesList.propTypes = {
-  arrayOfRecipes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  arrayOfRecipes: PropTypes.arrayOf(String).isRequired,
   recipesType: PropTypes.string.isRequired,
 };

@@ -69,12 +69,12 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
     }
   };
 
-  // const handleChecked = ({ target }) => {
-  //   setCheckeds({
-  //     ...checkeds,
-  //     [target.id]: target.checked,
-  //   });
-  // };
+  const handleChecked = ({ target }) => {
+    setCheckeds({
+      ...checkeds,
+      [target.id]: target.checked,
+    });
+  };
 
   return (
     <div className="detail-card-container">
@@ -112,10 +112,7 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
               {hasCheckBox
               && <input
                 type="checkbox"
-                onChange={ ({ target }) => setCheckeds({
-                  ...checkeds,
-                  [target.id]: target.checked,
-                }) }
+                onChange={ (e) => handleChecked(e) }
               />}
             </div>))}
       </div>

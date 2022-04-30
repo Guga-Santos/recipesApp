@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import DrinkDetailCard from '../components/DrinkDetailCard';
 import fetchForDetails from '../services/fetchForDetails';
 
 export default function DrinkRecipesInProgress() {
   const [details, setDetails] = useState([]);
+
   const location = useLocation();
   const id = location.pathname.split('/')[2];
+
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +19,11 @@ export default function DrinkRecipesInProgress() {
     };
     fetchData();
   }, [id]);
+
+  const handleClick = () => {
+    history.push('/done-recipes');
+  };
+
   return (
     <div>
       <h1>Drink In Progress</h1>
@@ -24,6 +32,7 @@ export default function DrinkRecipesInProgress() {
         <button
           type="button"
           data-testid="finish-recipe-btn"
+          onClick={ () => handleClick() }
         >
           Finish
 

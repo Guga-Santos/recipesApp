@@ -8,8 +8,11 @@ export default function Card({ data, type }) {
     global.alert('Sorry, we haven\'t found any recipes for these filters.');
   }
   console.log('Entrei no card');
+  console.log(data);
+
   return (
-    data && data.map((obj, index) => index < MAGICNUMBER && (
+    data
+    && data.map((obj, index) => index < MAGICNUMBER && (
       data.length < 2
         ? (
           <Redirect
@@ -17,7 +20,7 @@ export default function Card({ data, type }) {
             to={ type === 'Foods' ? `/foods/${obj.idMeal}` : `/drinks/${obj.idDrink}` }
           />)
         : (
-          <div data-testid={ `${index}-recipe-card` } key={ index }>
+          <div className="card-div" data-testid={ `${index}-recipe-card` } key={ index }>
             <img
               src={ data[0].strMeal === undefined ? obj.strDrinkThumb : obj.strMealThumb }
               alt="imagem"

@@ -75,6 +75,7 @@ export default function DoneRecipes() {
           recipeIndex={ index }
           recipeType={ recipeInfo.type }
           isAlcoholic={ recipeInfo.alcoholicOrNot }
+          recipeId={ recipeInfo.id }
         />
       ));
       console.log(recipesFiltered);

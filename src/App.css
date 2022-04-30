@@ -1,12 +1,17 @@
-.header-container {
-  display: flex;
-  width: 360px;
-}
+@media only screen and ( max-width : 360px ) {
 
-.card-img {
-  width: 100px;
-}
+  .header-container {
+    display: flex;
+    width: 90vw;
+  }
 
-button {
-  height: 40px;
+  .card-img {
+    width: 100px;
+  }
+
+  button {
+    font-size: 3.3vw;
+    height: 40px;
+  }
+
 }

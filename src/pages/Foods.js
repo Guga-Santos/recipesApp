@@ -16,6 +16,8 @@ export default function Foods(props) {
     ingredient,
   } = contexto;
 
+  // Teste
+
   useEffect(() => {
     const get = JSON.parse(localStorage.getItem('favoriteRecipes'));
 

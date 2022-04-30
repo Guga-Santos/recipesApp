@@ -24,6 +24,8 @@ export default function AppProvider({ children }) {
   const [exploreIngredients, setExploreIngredients] = useState(false);
   const [ingredient, setIngredient] = useState('');
 
+  const [favRecipesInfo, setFavRecipesInfo] = useState();
+
   // ComponentDidMount like -----------------------
   const [loading, setLoading] = useState(true);
   // ComponentDidMount link -----------------------
@@ -85,6 +87,8 @@ export default function AppProvider({ children }) {
     selectedCATEG,
     exploreIngredients,
     ingredient,
+    favRecipesInfo,
+    setFavRecipesInfo,
     setSelectedCATEG,
     getSearchType,
     getQuery,

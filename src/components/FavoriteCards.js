@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AppContext from '../context/AppContext';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -8,6 +9,7 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 export default function FavoriteCards(props) {
   const [copied, setcopied] = useState(false);
   const [favorited, setFavorited] = useState(false);
+  const { setFavRecipesInfo } = useContext(AppContext);
 
   useEffect(() => {
     setFavorited(true);
@@ -29,16 +31,30 @@ export default function FavoriteCards(props) {
     navigator.clipboard.writeText(`http://localhost:3000/${recipeType}s/${recipeId}`);
   };
 
+  const handleFavorited = ({ target }) => {
+    const get = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const filtered = get.filter((ele) => ele.id !== target.id);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(filtered));
+    setFavRecipesInfo(filtered);
+
+    console.log(filtered);
+    console.log(recipeId);
+    console.log(target.id);
+  };
+
   return (
     <div>
       <div>
         <Link to={ `/${recipeType}s/${recipeId}` }>
-          <img
-            data-testid={ `${recipeIndex}-horizontal-image` }
-            src={ recipeImage }
-            alt="imagem da receita favorita"
-          />
-          <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          <div>
+            <img
+              data-testid={ `${recipeIndex}-horizontal-image` }
+              src={ recipeImage }
+              alt="imagem da receita favorita"
+              style={ { pointerEvents: 'auto' } }
+            />
+            <h4 data-testid={ `${recipeIndex}-horizontal-name` }>{recipeName}</h4>
+          </div>
         </Link>
 
         {recipeType === 'food'
@@ -65,8 +81,9 @@ export default function FavoriteCards(props) {
         </button>
         <button
           type="button"
+          id={ recipeId }
           data-testid={ `${recipeIndex}-horizontal-favorite-btn` }
-          onClick={ () => handleFavorited() }
+          onClick={ (e) => handleFavorited(e) }
           src={ favorited ? blackHeartIcon : whiteHeartIcon }
         >
           <img src={ favorited ? blackHeartIcon : whiteHeartIcon } alt="imagem" />

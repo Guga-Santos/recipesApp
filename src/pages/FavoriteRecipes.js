@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import DoneRecipesFilters from '../components/DoneRecipesFilters';
 import FavoriteCards from '../components/FavoriteCards';
 import Header from '../components/Header';
+import AppContext from '../context/AppContext';
 
 // const favoriteRecipes = [
 //   {
@@ -25,18 +26,25 @@ import Header from '../components/Header';
 // ];
 
 export default function FavoriteRecipes() {
-  const [favRecipesInfo, setFavRecipesInfo] = useState();
+  const { favRecipesInfo, setFavRecipesInfo } = useContext(AppContext);
+
+  // localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
 
   useEffect(() => {
-    // localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
     const recipesOnStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
     setFavRecipesInfo(recipesOnStorage);
     console.log(recipesOnStorage);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleFilter = ({ value }) => {
-    console.log(value);
+  const handleFilter = (value) => {
+    if (value !== 'All') {
+      const recipesOnStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      setFavRecipesInfo(recipesOnStorage.filter((ele) => ele.type === value));
+    } else {
+      const recipesOnStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      setFavRecipesInfo(recipesOnStorage);
+    }
   };
 
   return (

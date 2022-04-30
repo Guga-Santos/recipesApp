@@ -36,7 +36,7 @@ export default function FoodDetails() {
       setRecomended(randomData.drinks.slice(0, MAGICNUMBER));
     };
     fetchData();
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     const teste = () => {

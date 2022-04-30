@@ -17,3 +17,18 @@ code {
 img {
   max-width: 200px;
 }
+
+.card-div {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.card-div img {
+  max-width: 200px;
+  min-width: 150px;
+
+  pointer-events: none;
+}

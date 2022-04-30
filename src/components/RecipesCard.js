@@ -20,7 +20,7 @@ export default function RecipesCard({ image, name, id, type, idType }) {
 }
 
 RecipesCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

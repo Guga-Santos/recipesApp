@@ -73,7 +73,7 @@ describe('Testes para verificar todos os componentes da dela de login', () => {
     expect(loginButton).toBeDisabled();
   });
 
-  test('Verifica se ao digitar um email e senha valida o botão é habilitado', () => {
+  test('Verifica se ao digitar um email e senha validos o botão é habilitado', () => {
     renderWithRouter(<Login />);
     const passwordInput = screen.getByTestId(passwordId);
     const emailInput = screen.getByTestId(emailId);
@@ -92,7 +92,6 @@ describe('Testes para verificar todos os componentes da dela de login', () => {
     userEvent.type(emailInput, email);
     userEvent.type(passwordInput, password);
     fireEvent.click(loginButton);
-    console.log(history.location.pathname);
     expect(history.location.pathname).toBe(expectedPath);
   });
 });

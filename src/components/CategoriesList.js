@@ -5,7 +5,7 @@ const NUMBER_OF_BUTTONS = 5;
 
 export default function CategoriesList({ categoriesList, filter }) {
   return (
-    <section>
+    <section className="categorySection">
       <button
         onClick={ ({ target: { value } }) => filter(value) }
         value="All"

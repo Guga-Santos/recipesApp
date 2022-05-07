@@ -30,20 +30,21 @@ export default function FoodDetails() {
   useEffect(() => {
     const teste = () => {
       let getDone = JSON.parse(localStorage.getItem('doneRecipes'));
-
       if (!getDone) {
         localStorage.setItem('doneRecipes', JSON.stringify([]));
         getDone = JSON.parse(localStorage.getItem('doneRecipes'));
       }
-
       setDone(getDone?.some((obj) => obj.id === details.idMeal));
-      let getProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-
-      if (!getProgress) {
-        localStorage.setItem('inProgressRecipes', JSON.stringify({}));
-        getProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (!JSON
+        .parse(localStorage.getItem('inProgressRecipes'))) {
+        const emptyKey = {
+          cocktails: {
+          },
+          meals: {
+          },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(emptyKey));
       }
-
       setInProgress(true);
       // gambiarra pra passar no teste (refatorar!)
     };

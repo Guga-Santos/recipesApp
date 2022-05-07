@@ -47,14 +47,16 @@ export default function DrinkDetails() {
       }
 
       setDone(getDone.some((obj) => obj.id === details.idDrink));
-
-      let getProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
-
-      if (!getProgress) {
-        localStorage.setItem('inProgressRecipes', JSON.stringify({}));
-        getProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (!JSON
+        .parse(localStorage.getItem('inProgressRecipes'))) {
+        const emptyKey = {
+          cocktails: {
+          },
+          meals: {
+          },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(emptyKey));
       }
-
       setInProgress(true);
       // Gambiarra pra passar no teste (Refatorar!)
     };

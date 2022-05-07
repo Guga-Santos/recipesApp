@@ -18,7 +18,7 @@ import Foods from './pages/Foods';
 import FoodsRecipesInProgress from './pages/FoodsRecipesInProgress';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile'; // finalizacao
 
 function App() {
   return (

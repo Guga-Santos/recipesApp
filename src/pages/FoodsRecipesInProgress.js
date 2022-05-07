@@ -15,9 +15,24 @@ export default function FoodsRecipesInProgress() {
     const fetchData = async () => {
       const data = await fetchForDetails('meal', id);
       setDetails(data.meals[0]);
-      console.log(data.meals[0]);
     };
     fetchData();
+    if (!JSON
+      .parse(localStorage.getItem('inProgressRecipes'))) {
+      const emptyKey = {
+        cocktails: {
+        },
+        meals: {
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(emptyKey));
+    }
+    const inProgressRecipesStorage = JSON
+      .parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgressRecipesStorage.meals[id] === undefined) {
+      inProgressRecipesStorage.meals = { ...inProgressRecipesStorage.meals, [id]: [] };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
+    }
   }, [id]);
 
   const handleClick = () => {

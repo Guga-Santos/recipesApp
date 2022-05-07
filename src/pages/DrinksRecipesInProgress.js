@@ -18,6 +18,23 @@ export default function DrinkRecipesInProgress() {
       console.log(data.drinks[0]);
     };
     fetchData();
+    if (!JSON
+      .parse(localStorage.getItem('inProgressRecipes'))) {
+      const emptyKey = {
+        cocktails: {
+        },
+        meals: {
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(emptyKey));
+    }
+    const inProgressRecipesStorage = JSON
+      .parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgressRecipesStorage.cocktails[id] === undefined) {
+      inProgressRecipesStorage.cocktails = { ...inProgressRecipesStorage.cocktails,
+        [id]: [] };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
+    }
   }, [id]);
 
   const handleClick = () => {

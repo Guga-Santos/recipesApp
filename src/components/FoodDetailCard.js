@@ -69,11 +69,29 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
     }
   };
 
+  const addIngredientLocalStorage = (name) => {
+    const inProgressRecipesStorage = JSON
+      .parse(localStorage.getItem('inProgressRecipes'));
+    inProgressRecipesStorage
+      .meals[data.idMeal] = [...inProgressRecipesStorage.meals[data.idMeal],
+        name];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
+  };
+
   const handleChecked = ({ target }) => {
     setCheckeds({
       ...checkeds,
       [target.id]: target.checked,
     });
+    addIngredientLocalStorage(target.name);
+  };
+
+  const isIngredientChecked = (number) => {
+    const inProgressRecipesStorage = JSON
+      .parse(localStorage.getItem('inProgressRecipes'));
+    const ingredientList = inProgressRecipesStorage.meals[data.idMeal];
+    const isPresent = ingredientList.some((elem) => parseInt(elem, 10) === number);
+    return isPresent;
   };
 
   return (
@@ -112,7 +130,9 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
               {hasCheckBox
               && <input
                 type="checkbox"
+                name={ i }
                 onChange={ (e) => handleChecked(e) }
+                checked={ isIngredientChecked(i) }
               />}
             </div>))}
       </div>

@@ -16,18 +16,7 @@ export default function FoodDetails() {
   const location = useLocation();
   const history = useHistory();
   const id = location.pathname.split('/')[2];
-  // const doneRecipes = [];
-  // const progressRecipes = [];
-  // let isRecipeDone = false;
-  // let isRecipeInProgress = false;
-  // if (localStorage.doneRecipes !== undefined) {
-  //   doneRecipes.push(JSON.parse(localStorage.doneRecipes));
-  //   isRecipeDone = doneRecipes.find((index) => index.id === details.idMeal);
-  // }
-  // if (localStorage.inProgressRecipes !== undefined) {
-  //   progressRecipes.push(JSON.parse(localStorage.inProgressRecipes));
-  //   isRecipeInProgress = progressRecipes.find((index) => index.id === details.idMeal);
-  // }
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchForDetails('meal', id);
@@ -90,7 +79,6 @@ export default function FoodDetails() {
   }, [foodMap, imageIndex]);
 
   const nextButton = () => {
-    console.log(imageIndex);
     if (imageIndex === MAGICNUMBER - 1) {
       document.getElementById(imageIndex).style.display = 'none';
       document.getElementById(imageIndex - 1).style.display = 'none';
@@ -103,7 +91,6 @@ export default function FoodDetails() {
       document.getElementById(imageIndex + 1).removeAttribute('style');
       document.getElementById(imageIndex - 2).style.display = 'none';
       document.getElementById(imageIndex - 1).style.display = 'none';
-      console.log(imageIndexPlus);
       setImageIndex(imageIndexPlus);
     }
   };

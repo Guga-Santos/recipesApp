@@ -144,15 +144,11 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
   );
 }
 
+FoodDetailCard.defaultProps = {
+  hasCheckBox: false,
+};
+
 FoodDetailCard.propTypes = {
-  data: PropTypes.shape({
-    strMealThumb: PropTypes.string,
-    strMeal: PropTypes.string,
-    strCategory: PropTypes.string,
-    strInstructions: PropTypes.string,
-    strYoutube: PropTypes.string,
-    idMeal: PropTypes.string,
-    strArea: PropTypes.string,
-  }).isRequired,
-  hasCheckBox: PropTypes.bool.isRequired,
+  data: PropTypes.instanceOf(Object).isRequired,
+  hasCheckBox: PropTypes.bool,
 };

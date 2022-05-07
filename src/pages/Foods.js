@@ -16,14 +16,23 @@ export default function Foods(props) {
     ingredient,
   } = contexto;
 
-  // Teste
-
   useEffect(() => {
-    const get = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
-    if (!get) {
+    const favoriteRecipesStorage = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    const inProgressRecipesStorage = JSON
+      .parse(localStorage.getItem('inProgressRecipes'));
+    if (!favoriteRecipesStorage) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([]));
     }
+    if (!inProgressRecipesStorage) {
+      const emptyKey = {
+        cocktails: {
+        },
+        meals: {
+        },
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(emptyKey));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -36,6 +45,7 @@ export default function Foods(props) {
       };
       fetch();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -30,8 +30,6 @@ export default function CategoriesList({ categoriesList, filter }) {
 }
 
 CategoriesList.propTypes = {
-  categoriesList: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  categoriesList: PropTypes.instanceOf(Object).isRequired,
   filter: PropTypes.func.isRequired,
 };

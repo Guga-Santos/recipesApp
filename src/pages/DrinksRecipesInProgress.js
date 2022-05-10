@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import DrinkDetailCard from '../components/DrinkDetailCard';
 import fetchForDetails from '../services/fetchForDetails';
+import AppContext from '../context/AppContext';
 
 export default function DrinkRecipesInProgress() {
   const [details, setDetails] = useState([]);
+  const { checkBoxRender } = useContext(AppContext);
+  const [checkBoxArrayCheckedCondition, setCheckBoxArrayCheckedCondition] = useState([]);
 
   const location = useLocation();
   const id = location.pathname.split('/')[2];
@@ -15,7 +18,6 @@ export default function DrinkRecipesInProgress() {
     const fetchData = async () => {
       const data = await fetchForDetails('cocktail', id);
       setDetails(data.drinks[0]);
-      console.log(data.drinks[0]);
     };
     fetchData();
     if (!JSON
@@ -37,6 +39,21 @@ export default function DrinkRecipesInProgress() {
     }
   }, [id]);
 
+  useEffect(() => {
+    const isAllChecked = () => {
+      const checkBoxArray = document.getElementsByClassName('ingredientCheckBox');
+      const checkBoxArrayLength = checkBoxArray.length;
+      const condiditonArray = [];
+      for (let index = 0; index < checkBoxArrayLength; index += 1) {
+        condiditonArray.push(checkBoxArray[index].checked);
+      }
+      setCheckBoxArrayCheckedCondition(condiditonArray);
+    };
+    isAllChecked();
+    console.log('chamei');
+    console.log(checkBoxArrayCheckedCondition);
+  }, [checkBoxRender]);
+
   const handleClick = () => {
     history.push('/done-recipes');
   };
@@ -50,6 +67,7 @@ export default function DrinkRecipesInProgress() {
           type="button"
           data-testid="finish-recipe-btn"
           onClick={ () => handleClick() }
+          disabled={ checkBoxArrayCheckedCondition.some((elem) => elem === false) }
         >
           Finish
 

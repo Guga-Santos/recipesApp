@@ -25,6 +25,8 @@ export default function AppProvider({ children }) {
   const [ingredient, setIngredient] = useState('');
 
   const [favRecipesInfo, setFavRecipesInfo] = useState();
+  // alterna entre true e false cada vez que o checked dos checkbox de receitas e alterado
+  const [checkBoxRender, setCheckBoxRender] = useState(false);
 
   // ComponentDidMount like -----------------------
   const [loading, setLoading] = useState(true);
@@ -98,6 +100,8 @@ export default function AppProvider({ children }) {
     setExploreIngredients,
     setIngredient,
     loading,
+    checkBoxRender,
+    setCheckBoxRender,
   };
 
   return (

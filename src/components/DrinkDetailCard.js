@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../css/Details.css';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import AppContext from '../context/AppContext';
 
 export default function DrinkDetailCard({ data, hasCheckBox }) {
   const location = useLocation();
@@ -14,6 +15,7 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
   const [copied, setCopied] = useState(false);
   const [favorited, setFavorited] = useState(false);
   const [checkeds, setCheckeds] = useState({});
+  const { checkBoxRender, setCheckBoxRender } = useContext(AppContext);
 
   const favoriteRecipes = {
     id: data.idDrink,
@@ -81,6 +83,7 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
       ...checkeds,
       [target.id]: target.checked,
     });
+    setCheckBoxRender(!checkBoxRender);
     addIngredientLocalStorage(target.name);
   };
 
@@ -130,6 +133,7 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
               && <input
                 type="checkbox"
                 id={ i }
+                className="ingredientCheckBox"
                 name={ i }
                 onChange={ (e) => handleChecked(e) }
                 checked={ isIngredientChecked(i) }

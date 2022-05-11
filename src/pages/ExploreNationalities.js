@@ -11,7 +11,6 @@ export default function ExploreNationalities(props) {
   const [renderCard, setRenderCard] = useState(false);
   const { location } = props;
   const id = location.pathname.split('/')[2];
-  console.log(props);
 
   const contexto = useContext(AppContext);
   const { recipes: { nacionalidades } } = contexto;
@@ -24,11 +23,7 @@ export default function ExploreNationalities(props) {
     try {
       const response = await fetch(url[type]);
       const data = await response.json();
-      console.log(data);
-      if (type === '/foods') {
-        return data.meals;
-      }
-      return data.drinks;
+      return data.meals;
     } catch (error) {
       return Error(error);
     }
@@ -42,13 +37,10 @@ export default function ExploreNationalities(props) {
 
   useEffect(() => {
     const fetchAPI = async () => {
-      console.log(selectedCATEG);
-      console.log(`/${id}`);
       const data = await fetchRecipesByCategory(selectedCATEG, `/${id}`);
       setDataToCard(data);
     };
     fetchAPI();
-    console.log(id);
   }, [selectedCATEG, id]);
 
   const handleChange = ({ target }) => {

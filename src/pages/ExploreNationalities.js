@@ -10,7 +10,7 @@ export default function ExploreNationalities() {
   const [selectedCATEG, setSelectedCATEG] = useState('Italian');
   const [renderCard, setRenderCard] = useState(false);
   const [renderCategory, setRenderCategory] = useState(false);
-
+  const [nationalitiesAll, setNationalitiesAll] = useState([]);
   const contexto = useContext(AppContext);
   const { recipes: { nacionalidades } } = contexto;
 
@@ -21,26 +21,38 @@ export default function ExploreNationalities() {
   }, [dataToCard]);
 
   useEffect(() => {
-    const fetchFirst12Recipes = async () => {
-      const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-      const promise = await fetch(URL);
-      const response = await promise.json();
-      setDataToCard(await response.meals);
-    };
-    fetchFirst12Recipes();
-  }, []);
+    if (nacionalidades !== undefined && nationalitiesAll.length === 0) {
+      console.log(nationalitiesAll.length);
+      console.log('inclui o all');
+      const allOption = { strArea: 'All' };
+      const allInclude = [...nacionalidades, allOption];
+      setNationalitiesAll(allInclude);
+    }
+  }, [nacionalidades]);
 
-  const filterRecipesByNationality = async () => {
-    console.log(selectedCATEG);
-    const data = await fetchFilterByCategory(selectedCATEG);
-    setDataToCard(data);
+  const fetchFirst12Recipes = async () => {
+    const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+    const promise = await fetch(URL);
+    const response = await promise.json();
+    setDataToCard(await response.meals);
   };
 
   useEffect(() => {
+    fetchFirst12Recipes();
+  }, []);
+
+  useEffect(() => {
+    const filterRecipesByNationality = async () => {
+      const data = await fetchFilterByCategory(selectedCATEG);
+      setDataToCard(data);
+    };
     if (renderCategory) {
-      console.log('mudei a categoria');
-      filterRecipesByNationality();
-      setRenderCategory(!renderCategory);
+      if (selectedCATEG === 'All') {
+        fetchFirst12Recipes();
+      } else {
+        filterRecipesByNationality();
+        setRenderCategory(false);
+      }
     }
   }, [selectedCATEG]);
 
@@ -48,7 +60,7 @@ export default function ExploreNationalities() {
     console.log(target.value);
     setRenderCard(false);
     setSelectedCATEG(target.value);
-    setRenderCategory(!renderCategory);
+    setRenderCategory(true);
   };
 
   return (
@@ -59,7 +71,7 @@ export default function ExploreNationalities() {
         onChange={ (e) => handleChange(e) }
         data-testid="explore-by-nationality-dropdown"
       >
-        {nacionalidades && nacionalidades.map((srt) => (
+        {nationalitiesAll && nationalitiesAll.map((srt) => (
           <option
             data-testid={ `${srt.strArea}-option` }
             key={ srt.strArea }

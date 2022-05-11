@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import '../css/Details.css';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import AppContext from '../context/AppContext';
 
 export default function FoodDetailCard({ data, hasCheckBox }) {
   const location = useLocation();
@@ -14,6 +15,7 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
   const [copied, setCopied] = useState(false);
   const [favorited, setFavorited] = useState(false);
   const [checkeds, setCheckeds] = useState({});
+  const { checkBoxRender, setCheckBoxRender } = useContext(AppContext);
 
   const favoriteRecipes = {
     id: data.idMeal,
@@ -69,11 +71,30 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
     }
   };
 
+  const addIngredientLocalStorage = (name) => {
+    const inProgressRecipesStorage = JSON
+      .parse(localStorage.getItem('inProgressRecipes'));
+    inProgressRecipesStorage
+      .meals[data.idMeal] = [...inProgressRecipesStorage.meals[data.idMeal],
+        name];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesStorage));
+  };
+
   const handleChecked = ({ target }) => {
     setCheckeds({
       ...checkeds,
       [target.id]: target.checked,
     });
+    setCheckBoxRender(!checkBoxRender);
+    addIngredientLocalStorage(target.name);
+  };
+
+  const isIngredientChecked = (number) => {
+    const inProgressRecipesStorage = JSON
+      .parse(localStorage.getItem('inProgressRecipes'));
+    const ingredientList = inProgressRecipesStorage.meals[data.idMeal];
+    const isPresent = ingredientList.some((elem) => parseInt(elem, 10) === number);
+    return isPresent;
   };
 
   return (
@@ -112,7 +133,10 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
               {hasCheckBox
               && <input
                 type="checkbox"
+                name={ i }
+                className="ingredientCheckBox"
                 onChange={ (e) => handleChecked(e) }
+                checked={ isIngredientChecked(i) }
               />}
             </div>))}
       </div>
@@ -144,15 +168,11 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
   );
 }
 
+FoodDetailCard.defaultProps = {
+  hasCheckBox: false,
+};
+
 FoodDetailCard.propTypes = {
-  data: PropTypes.shape({
-    strMealThumb: PropTypes.string,
-    strMeal: PropTypes.string,
-    strCategory: PropTypes.string,
-    strInstructions: PropTypes.string,
-    strYoutube: PropTypes.string,
-    idMeal: PropTypes.string,
-    strArea: PropTypes.string,
-  }).isRequired,
-  hasCheckBox: PropTypes.bool.isRequired,
+  data: PropTypes.instanceOf(Object).isRequired,
+  hasCheckBox: PropTypes.bool,
 };

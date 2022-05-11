@@ -4,41 +4,6 @@ import DoneRecipesCard from '../components/DoneRecipesCard';
 import DoneRecipesFilters from '../components/DoneRecipesFilters';
 import Header from '../components/Header';
 
-// const mock = [
-//   {
-//     id: '52804',
-//     type: 'Food',
-//     nationality: 'Canadian',
-//     category: 'Miscellaneous',
-//     alcoholicOrNot: '',
-//     name: 'Poutine',
-//     image: 'https://www.themealdb.com/images/media/meals/uuyrrx1487327597.jpg',
-//     doneDate: '26/04/2022',
-//     tags: ['UnHealthy', 'Speciality', 'HangoverFood'],
-//   },
-//   {
-//     id: '178333',
-//     type: 'Drink',
-//     nationality: '',
-//     category: 'Miscellaneous',
-//     alcoholicOrNot: 'Alcoholic',
-//     name: 'Raspberry Julep',
-//     image: 'https://www.thecocktaildb.com/images/media/drink/hyztmx1598719265.jpg',
-//     doneDate: '26/04/2022',
-//     tags: [],
-//   },
-//   {
-//     id: '178333',
-//     type: 'Drink',
-//     nationality: '',
-//     category: 'Miscellaneous',
-//     alcoholicOrNot: 'Non alcoholic',
-//     name: 'Raspberry Julep',
-//     image: 'https://www.thecocktaildb.com/images/media/drink/hyztmx1598719265.jpg',
-//     doneDate: '26/04/2022',
-//     tags: [],
-//   },
-// ];
 export default function DoneRecipes() {
   const recipesOnStorage = JSON.parse(localStorage.getItem('doneRecipes'));
   const [doneRecipesInfo, setDoneRecipesInfo] = useState(recipesOnStorage);

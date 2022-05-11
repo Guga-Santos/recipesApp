@@ -57,6 +57,6 @@ export default function MainScreen({ history }) {
 
 MainScreen.propTypes = {
   history: PropTypes.shape({
-    location: PropTypes.string,
+    location: PropTypes.instanceOf(Object),
   }).isRequired,
 };

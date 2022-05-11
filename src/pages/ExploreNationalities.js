@@ -1,33 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import Footer from '../components/footer';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
+import fetchFilterByCategory from '../services/fetchFilterByCategory';
 
-export default function ExploreNationalities(props) {
+export default function ExploreNationalities() {
   const [dataToCard, setDataToCard] = useState([]);
   const [selectedCATEG, setSelectedCATEG] = useState('Italian');
   const [renderCard, setRenderCard] = useState(false);
-  const { location } = props;
-  const id = location.pathname.split('/')[2];
+  const [renderCategory, setRenderCategory] = useState(false);
 
   const contexto = useContext(AppContext);
   const { recipes: { nacionalidades } } = contexto;
-
-  const fetchRecipesByCategory = async (category, type) => {
-    const url = {
-      '/foods': `https://www.themealdb.com/api/json/v1/1/filter.php?a=${category}`,
-      '/drinks': 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=vodka',
-    };
-    try {
-      const response = await fetch(url[type]);
-      const data = await response.json();
-      return data.meals;
-    } catch (error) {
-      return Error(error);
-    }
-  };
 
   useEffect(() => {
     if (dataToCard.length > 0) {
@@ -36,17 +21,34 @@ export default function ExploreNationalities(props) {
   }, [dataToCard]);
 
   useEffect(() => {
-    const fetchAPI = async () => {
-      const data = await fetchRecipesByCategory(selectedCATEG, `/${id}`);
-      setDataToCard(data);
+    const fetchFirst12Recipes = async () => {
+      const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+      const promise = await fetch(URL);
+      const response = await promise.json();
+      setDataToCard(await response.meals);
     };
-    fetchAPI();
-  }, [selectedCATEG, id]);
+    fetchFirst12Recipes();
+  }, []);
+
+  const filterRecipesByNationality = async () => {
+    console.log(selectedCATEG);
+    const data = await fetchFilterByCategory(selectedCATEG);
+    setDataToCard(data);
+  };
+
+  useEffect(() => {
+    if (renderCategory) {
+      console.log('mudei a categoria');
+      filterRecipesByNationality();
+      setRenderCategory(!renderCategory);
+    }
+  }, [selectedCATEG]);
 
   const handleChange = ({ target }) => {
+    console.log(target.value);
     setRenderCard(false);
     setSelectedCATEG(target.value);
-    setDataToCard(target.value);
+    setRenderCategory(!renderCategory);
   };
 
   return (
@@ -72,7 +74,3 @@ export default function ExploreNationalities(props) {
     </div>
   );
 }
-
-ExploreNationalities.propTypes = {
-  location: PropTypes.instanceOf(Object).isRequired,
-};

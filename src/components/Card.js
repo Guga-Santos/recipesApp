@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 const MAGICNUMBER = 12;
 
@@ -19,13 +19,16 @@ export default function Card({ data, type }) {
           />)
         : (
           <div className="card-div" data-testid={ `${index}-recipe-card` } key={ index }>
-            <img
-              src={ data[0].strMeal === undefined ? obj.strDrinkThumb : obj.strMealThumb }
-              alt="imagem"
-              className="card-img"
-              data-testid={ `${index}-card-img` }
-              style={ { pointerEvents: 'auto' } }
-            />
+            <Link to={ `/foods/${obj.idMeal}` }>
+              <img
+                src={ data[0]
+                  .strMeal === undefined ? obj.strDrinkThumb : obj.strMealThumb }
+                alt="imagem"
+                className="card-img"
+                data-testid={ `${index}-card-img` }
+                style={ { pointerEvents: 'auto' } }
+              />
+            </Link>
             <h4
               data-testid={ `${index}-card-name` }
             >

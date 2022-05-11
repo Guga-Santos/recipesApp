@@ -168,13 +168,6 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
 }
 
 DrinkDetailCard.propTypes = {
-  data: PropTypes.shape({
-    strDrinkThumb: PropTypes.string,
-    strDrink: PropTypes.string,
-    strAlcoholic: PropTypes.string,
-    strInstructions: PropTypes.string,
-    strCategory: PropTypes.string,
-    idDrink: PropTypes.string,
-  }).isRequired,
+  data: PropTypes.instanceOf(Object).isRequired,
   hasCheckBox: PropTypes.bool.isRequired,
 };

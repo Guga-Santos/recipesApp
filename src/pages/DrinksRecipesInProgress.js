@@ -50,8 +50,6 @@ export default function DrinkRecipesInProgress() {
       setCheckBoxArrayCheckedCondition(condiditonArray);
     };
     isAllChecked();
-    console.log('chamei');
-    console.log(checkBoxArrayCheckedCondition);
   }, [checkBoxRender]);
 
   const handleClick = () => {

@@ -65,7 +65,7 @@ function App() {
         />
         <Route
           path="/explore/drinks/nationalities"
-          component={ NotFound }
+          component={ ExploreNationalities }
         />
         <Route
           path="/explore/drinks/ingredients"

@@ -15,18 +15,7 @@ export default function DrinkDetails() {
   const location = useLocation();
   const history = useHistory();
   const id = location.pathname.split('/')[2];
-  // const doneRecipes = [];
-  // const progressRecipes = [];
-  // let isRecipeDone = false;
-  // let isRecipeInProgress = false;
-  // if (localStorage.doneRecipes !== undefined) {
-  //   doneRecipes.push(JSON.parse(localStorage.doneRecipes));
-  //   isRecipeDone = doneRecipes.find((index) => index.id === details.idDrink);
-  // }
-  // if (localStorage.inProgressRecipes !== undefined) {
-  //   progressRecipes.push(JSON.parse(localStorage.inProgressRecipes));
-  //   isRecipeInProgress = progressRecipes.find((index) => index.id === details.idMeal);
-  // }
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchForDetails('cocktail', id);

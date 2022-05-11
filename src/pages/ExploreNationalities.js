@@ -1,27 +1,49 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Card from '../components/Card';
 import Footer from '../components/footer';
 import Header from '../components/Header';
 import AppContext from '../context/AppContext';
-import fetchFilterByCategory from '../services/fetchFilterByCategory';
 
-export default function ExploreNationalities() {
+export default function ExploreNationalities(props) {
   const [dataToCard, setDataToCard] = useState([]);
   const [selectedCATEG, setSelectedCATEG] = useState('American');
   const [renderCard, setRenderCard] = useState(false);
+  const { location } = props;
+  const id = location.pathname.split('/')[2];
 
   const contexto = useContext(AppContext);
   const { recipes: { nacionalidades } } = contexto;
 
+  const fetchRecipesByCategory = async (category, type) => {
+    const url = {
+      '/foods': `https://www.themealdb.com/api/json/v1/1/filter.php?a=${category}`,
+      '/drinks': `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=${category}`,
+    };
+    try {
+      const response = await fetch(url[type]);
+      const data = await response.json();
+      console.log(data);
+      if (type === '/foods') {
+        return data.meals;
+      }
+      return data;
+    } catch (error) {
+      return Error(error);
+    }
+  };
+
   useEffect(() => {
     const fetchAPI = async () => {
-      const data = await fetchFilterByCategory(selectedCATEG);
+      console.log(selectedCATEG);
+      console.log(`/${id}`);
+      const data = await fetchRecipesByCategory(selectedCATEG, `/${id}`);
       setDataToCard(data);
       setRenderCard(true);
     };
-
     fetchAPI();
-  }, [selectedCATEG]);
+    console.log(id);
+  }, [selectedCATEG, id]);
 
   const handleChange = ({ target }) => {
     setRenderCard(false);
@@ -52,3 +74,7 @@ export default function ExploreNationalities() {
     </div>
   );
 }
+
+ExploreNationalities.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};

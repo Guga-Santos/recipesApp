@@ -28,7 +28,7 @@ export default function ExploreNationalities() {
       const allInclude = [...nacionalidades, allOption];
       setNationalitiesAll(allInclude);
     }
-  }, [nacionalidades]);
+  }, [nacionalidades, nationalitiesAll]);
 
   const fetchFirst12Recipes = async () => {
     const URL = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -54,7 +54,7 @@ export default function ExploreNationalities() {
         setRenderCategory(false);
       }
     }
-  }, [selectedCATEG]);
+  }, [selectedCATEG, renderCategory]);
 
   const handleChange = ({ target }) => {
     console.log(target.value);

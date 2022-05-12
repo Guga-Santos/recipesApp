@@ -14,4 +14,30 @@
     height: 40px;
   }
 
+  .testeFlex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sectionFlex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .boxFlex {
+    width: 20vh;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 2vh;
+  }
+
+  .categorySection {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content:space-between;
+  }
+
 }

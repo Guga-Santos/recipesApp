@@ -6,8 +6,9 @@ export default function RecipesCard({ image, name, id, type, idType }) {
   return (
     <section
       data-testid={ `${id}-recipe-card` }
+      className="boxFlex"
     >
-      <Link to={ `${type}/${idType}` }>
+      <Link to={ `${type}/${idType}` } className="testeFlex">
         <img
           src={ image }
           data-testid={ `${id}-card-img` }

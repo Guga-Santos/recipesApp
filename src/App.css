@@ -28,16 +28,17 @@
 
   .boxFlex {
     width: 20vh;
-    border: 2px solid black;
+    border: 2px solid #c4c4c4;
     border-radius: 5px;
     margin: 2vh;
   }
 
   .categorySection {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     width: 100%;
-    justify-content:space-between;
+    align-items: stretch;
+    justify-content: center;
+    background-color: #c4c4c4;
   }
-
 }

@@ -3,5 +3,7 @@
   flex-direction: row;
   height: auto;
   justify-content: space-between;
-  max-width: 84vw;
+  width: 100%;
+  background-color: #c4c4c4;
+  border-bottom: 1px solid black;
 }

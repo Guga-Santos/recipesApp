@@ -11,6 +11,7 @@ export default function CategoriesList({ categoriesList, filter }) {
         value="All"
         data-testid="All-category-filter"
         type="button"
+        className="navbar-toggler"
       >
         All
       </button>
@@ -22,6 +23,7 @@ export default function CategoriesList({ categoriesList, filter }) {
             value={ strCategory }
             data-testid={ `${strCategory}-category-filter` }
             onClick={ ({ target: { value } }) => filter(value) }
+            className="navbar-toggler"
           >
             {strCategory}
           </button>)))}

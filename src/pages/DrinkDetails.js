@@ -81,7 +81,6 @@ export default function DrinkDetails() {
   }, [drinkMap, imageIndex]);
 
   const nextButton = () => {
-    console.log(imageIndex);
     if (imageIndex === MAGICNUMBER - 1) {
       document.getElementById(imageIndex).style.display = 'none';
       document.getElementById(imageIndex - 1).style.display = 'none';
@@ -94,7 +93,6 @@ export default function DrinkDetails() {
       document.getElementById(imageIndex + 1).removeAttribute('style');
       document.getElementById(imageIndex - 2).style.display = 'none';
       document.getElementById(imageIndex - 1).style.display = 'none';
-      console.log(imageIndexPlus);
       setImageIndex(imageIndexPlus);
     }
   };

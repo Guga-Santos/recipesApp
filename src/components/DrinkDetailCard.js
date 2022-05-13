@@ -167,7 +167,11 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
   );
 }
 
+DrinkDetailCard.defaultProps = {
+  hasCheckBox: false,
+};
+
 DrinkDetailCard.propTypes = {
   data: PropTypes.instanceOf(Object).isRequired,
-  hasCheckBox: PropTypes.bool.isRequired,
+  hasCheckBox: PropTypes.bool,
 };

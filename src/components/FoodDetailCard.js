@@ -103,6 +103,7 @@ export default function FoodDetailCard({ data, hasCheckBox }) {
         src={ data.strMealThumb }
         alt="uma imagem"
         data-testid="recipe-photo"
+        className="detail-card-img"
       />
       <h2
         data-testid="recipe-title"

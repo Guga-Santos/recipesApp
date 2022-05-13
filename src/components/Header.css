@@ -1,13 +1,17 @@
 .header-container {
+  background-color: #c4c4c4;
+  border-bottom: 1px solid black;
   display: flex;
   flex-direction: row;
   height: auto;
   justify-content: space-between;
   width: 100%;
-  background-color: #c4c4c4;
-  border-bottom: 1px solid black;
 }
 
 .header-and-filters {
   width: 100%;
+}
+
+.h1Center {
+  justify-content: center;
 }

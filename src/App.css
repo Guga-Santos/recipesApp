@@ -27,19 +27,19 @@
   }
 
   .boxFlex {
-    width: 20vh;
     border: 2px solid #c4c4c4;
     border-radius: 5px;
     margin: 2vh;
+    width: 20vh;
   }
 
   .categorySection {
+    align-items: stretch;
+    background-color: #c4c4c4;
     display: flex;
     flex-flow: row wrap;
-    width: 100%;
-    align-items: stretch;
     justify-content: center;
-    background-color: #c4c4c4;
+    width: 100%;
   }
 
   .pCenter {
@@ -48,7 +48,7 @@
     margin: 0;
   }
 
-  .imgRecipesCard{
+  .imgRecipesCard {
     border-bottom: 2px solid #c4c4c4;
   }
 

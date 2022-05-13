@@ -19,6 +19,7 @@ export default function Header({ title, hasSearch }) {
           data-testid="profile-top-btn"
           src={ profileIcon }
           onClick={ () => history.push('/profile') }
+          className="navbar-toggler"
         >
           <img src={ profileIcon } alt="" />
         </button>
@@ -29,6 +30,7 @@ export default function Header({ title, hasSearch }) {
             data-testid="search-top-btn"
             src={ searchIcon }
             onClick={ () => setSearch(!search) }
+            className="navbar-toggler"
           >
             <img src={ searchIcon } alt="" />
           </button>)}

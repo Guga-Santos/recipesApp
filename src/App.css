@@ -14,4 +14,45 @@
     height: 40px;
   }
 
+  .testeFlex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sectionFlex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .boxFlex {
+    border: 2px solid #c4c4c4;
+    border-radius: 5px;
+    margin: 2vh;
+    width: 20vh;
+  }
+
+  .categorySection {
+    align-items: stretch;
+    background-color: #c4c4c4;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .pCenter {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .imgRecipesCard {
+    border-bottom: 2px solid #c4c4c4;
+  }
+
+  .cards-box {
+    margin-bottom: 62px;
+  }
 }

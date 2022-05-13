@@ -101,6 +101,7 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
         src={ data.strDrinkThumb }
         alt="uma imagem"
         data-testid="recipe-photo"
+        className="detail-card-img"
       />
       <h2
         data-testid="recipe-title"
@@ -167,7 +168,11 @@ export default function DrinkDetailCard({ data, hasCheckBox }) {
   );
 }
 
+DrinkDetailCard.defaultProps = {
+  hasCheckBox: false,
+};
+
 DrinkDetailCard.propTypes = {
   data: PropTypes.instanceOf(Object).isRequired,
-  hasCheckBox: PropTypes.bool.isRequired,
+  hasCheckBox: PropTypes.bool,
 };

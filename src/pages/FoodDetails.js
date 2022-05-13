@@ -4,6 +4,7 @@ import FoodDetailCard from '../components/FoodDetailCard';
 import fetchForDetails from '../services/fetchForDetails';
 import fetchRecomended from '../services/fetchRecomended';
 import './DetailsPage.css';
+import '../components/Header.css';
 
 const MAGICNUMBER = 6; // teste
 
@@ -65,7 +66,12 @@ export default function FoodDetails() {
         src={ rec.strDrinkThumb }
         alt="imagem"
       />
-      <h4 data-testid={ `${i}-recomendation-title` }>{rec.strDrink}</h4>
+      <h4
+        data-testid={ `${i}-recomendation-title` }
+        className="h4-carousel"
+      >
+        {rec.strDrink}
+      </h4>
     </div>));
 
   useEffect(() => {
@@ -98,7 +104,7 @@ export default function FoodDetails() {
 
   return (
     <div>
-      <h1>Food Details</h1>
+      <h1 className="header-container h1Center">Food Details</h1>
       <FoodDetailCard data={ details } />
       <iframe
         title="Embedded youtube video"

@@ -40,7 +40,7 @@ export default function RecipesList({ arrayOfRecipes, recipesType }) {
     return recipes;
   };
   return (
-    <section>
+    <section className="sectionFlex">
       {listRecipes(arrayOfRecipes, NUMBER_OF_RECIPES_LISTED, recipesType)}
     </section>
   );

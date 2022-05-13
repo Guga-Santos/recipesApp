@@ -38,8 +38,8 @@
 }
 
 .imageLogo {
-  bottom: 33%;
-  position: absolute;
+  bottom: 50%;
+  position: relative;
 }
 
 .emailLogin {

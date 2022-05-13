@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import DrinkDetailCard from '../components/DrinkDetailCard';
 import fetchForDetails from '../services/fetchForDetails';
 import fetchRecomended from '../services/fetchRecomended';
+import '../components/Header.css';
 
 const MAGICNUMBER = 6;
 
@@ -66,7 +67,12 @@ export default function DrinkDetails() {
         src={ rec.strMealThumb }
         alt="imagem"
       />
-      <h4 data-testid={ `${i}-recomendation-title` }>{rec.strMeal}</h4>
+      <h4
+        data-testid={ `${i}-recomendation-title` }
+        className="h4-carousel"
+      >
+        {rec.strMeal}
+      </h4>
     </div>));
 
   useEffect(() => {
@@ -81,7 +87,6 @@ export default function DrinkDetails() {
   }, [drinkMap, imageIndex]);
 
   const nextButton = () => {
-    console.log(imageIndex);
     if (imageIndex === MAGICNUMBER - 1) {
       document.getElementById(imageIndex).style.display = 'none';
       document.getElementById(imageIndex - 1).style.display = 'none';
@@ -94,14 +99,13 @@ export default function DrinkDetails() {
       document.getElementById(imageIndex + 1).removeAttribute('style');
       document.getElementById(imageIndex - 2).style.display = 'none';
       document.getElementById(imageIndex - 1).style.display = 'none';
-      console.log(imageIndexPlus);
       setImageIndex(imageIndexPlus);
     }
   };
 
   return (
     <div>
-      <h1> Drink Details </h1>
+      <h1 className="header-container h1Center"> Drink Details </h1>
       <DrinkDetailCard data={ details } />
       <button type="button" onClick={ nextButton }>
         Next

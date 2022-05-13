@@ -51,4 +51,8 @@
   .imgRecipesCard{
     border-bottom: 2px solid #c4c4c4;
   }
+
+  .cards-box {
+    margin-bottom: 62px;
+  }
 }

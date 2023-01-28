@@ -208,10 +208,6 @@ React
 JavaScript
 </br>
 </br>
-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="tailwind" width="30" height="30"/> </a>
-Tailwind
-</br>
-</br>
 <a href="https://
 js.io" target="_blank"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="30" height="30"/> </a>
 Jest
@@ -248,3 +244,11 @@ Jest
   $ npm start
   ```
 </details>
+
+## Project developed in group
+
+[Raphael Soares de Freitas] (https://github.com/RSFreitas1991)
+</br>
+[Breno Laskavski Lopes](https://github.com/EletroCP)
+</br>
+[Thiago Silva Muniz](https://github.com/TsMuniz)

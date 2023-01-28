@@ -247,7 +247,7 @@ Jest
 
 ## Project developed in group
 
-[Raphael Soares de Freitas] (https://github.com/RSFreitas1991)
+[Raphael Soares de Freitas](https://github.com/RSFreitas1991)
 </br>
 [Breno Laskavski Lopes](https://github.com/EletroCP)
 </br>
